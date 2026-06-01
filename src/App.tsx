@@ -741,17 +741,18 @@ export default function App() {
                   return (
                     <motion.div
                       key={promoItem.season}
-                      style={{ pointerEvents: isTop ? 'auto' : 'none' }}
+                      style={{ pointerEvents: isTop ? 'auto' : 'none', willChange: 'transform, opacity' }}
                       animate={getStackStyles(relativeIndex)}
                       transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
                       className="absolute inset-x-0 top-0 h-[450px] sm:h-[410px] md:h-[390px] lg:h-[370px] rounded-[32px] overflow-hidden bg-zinc-950 border border-white/10 shadow-2xl flex items-center"
                     >
                       {/* Immersive background image with smooth lightened overlay */}
-                      <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden rounded-[32px]">
+                      <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden rounded-[32px] bg-black">
                         <img
                           src={promoItem.image}
                           alt=""
-                          className="w-full h-full object-cover opacity-80 saturate-125 scale-100 transition-all duration-1000 blur-sm md:blur-xl"
+                          className="w-full h-full object-cover opacity-70 md:opacity-80 md:saturate-125 md:blur-xl scale-100"
+                          style={{ willChange: 'transform' }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
