@@ -1,5 +1,6 @@
 import React, { useRef, useState, useCallback } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'motion/react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { 
   Home, 
   Compass, 
@@ -33,8 +34,6 @@ interface BlurGlassHeaderProps {
   };
   season: 'spring' | 'summer' | 'monsoon' | 'winter';
   setSeason: (season: 'spring' | 'summer' | 'monsoon' | 'winter') => void;
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
   setSelectedDest: (dest: Destination | null) => void;
   currentUser: any;
   onLoginClick: () => void;
@@ -147,13 +146,14 @@ export const BlurGlassHeader: React.FC<BlurGlassHeaderProps> = ({
   currentTheme,
   season,
   setSeason,
-  activeTab,
-  setActiveTab,
   setSelectedDest,
   currentUser,
   onLoginClick,
   onLogoutClick,
 }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const activeTab = location.pathname === '/' ? 'home' : location.pathname.split('/')[1] || 'home';
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
 
   React.useEffect(() => {
@@ -256,7 +256,7 @@ export const BlurGlassHeader: React.FC<BlurGlassHeaderProps> = ({
         {/* BRAND SIGNATURE & LOGO DESIGN - Hidden on mobile to fit elements */}
         {!isMobile && (
           <div 
-            onClick={() => { setActiveTab('home'); setSelectedDest(null); }}
+            onClick={() => { navigate('/'); setSelectedDest(null); }}
             className="flex items-center gap-1.5 sm:gap-2 cursor-pointer select-none border-r border-white/10 pr-2.5 sm:pr-3.5 py-1.5 hover:opacity-90 transition-opacity"
           >
             <div className="w-7 h-7 rounded-lg bg-white/5 border border-white/15 flex items-center justify-center shadow-inner relative overflow-hidden group">
@@ -286,7 +286,7 @@ export const BlurGlassHeader: React.FC<BlurGlassHeaderProps> = ({
                   magnification={activeMagnification}
                   distance={activeDistance}
                   onClick={() => {
-                    setActiveTab(item.id);
+                    navigate(item.id === 'home' ? '/' : `/${item.id}`);
                     setSelectedDest(null);
                   }}
                 />
@@ -361,7 +361,7 @@ export const BlurGlassHeader: React.FC<BlurGlassHeaderProps> = ({
           {currentUser ? (
             <div className="flex items-center gap-1.5">
               <div 
-                onClick={() => setActiveTab('dashboard')} 
+                onClick={() => navigate('/dashboard')} 
                 className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all cursor-pointer relative group flex items-center justify-center bg-white/5 hover:bg-white/10"
                 title={`${currentUser.name}'s Escapes`}
               >

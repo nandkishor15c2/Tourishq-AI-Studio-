@@ -5,6 +5,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Compass,
   MapPin,
@@ -304,8 +305,11 @@ export default function App() {
     return saved ? JSON.parse(saved) : DEFAULT_TICKETS(uid);
   });
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const activeTab = location.pathname === '/' ? 'home' : location.pathname.split('/')[1] || 'home';
+
   // Navigation and view focus state
-  const [activeTab, setActiveTab] = useState<'home' | 'about' | 'destinations' | 'support' | 'dashboard' | 'admin'>('home');
   const [selectedDest, setSelectedDest] = useState<Destination | null>(null);
   
   // Modals & Overlays state
@@ -488,7 +492,7 @@ export default function App() {
     setBookings([newBooking, ...bookings]);
     setBookingDest(null);
     setSelectedDest(null);
-    setActiveTab('dashboard'); // Redirect to Customer Profile to see progress instantly!
+    navigate('/dashboard'); // Redirect to Customer Profile to see progress instantly!
   };
 
   const handleSupportTicketSubmit = (
@@ -605,7 +609,7 @@ export default function App() {
     // Clear back to guest dummy bounds
     setBookings(DEFAULT_BOOKINGS('usr_tester'));
     setTickets(DEFAULT_TICKETS('usr_tester'));
-    setActiveTab('home');
+    navigate('/');
   };
 
   const handlePostReview = (bookingId: string, score: number, reviewContent: string) => {
@@ -640,7 +644,7 @@ export default function App() {
       {/* --- SLEEK FLOATING BRAND LOGO BAR --- */}
       <header className="py-3.5 px-6 border-b border-white/5 bg-zinc-950/20 backdrop-blur-sm relative z-30 select-none">
         <div className="max-w-7xl mx-auto flex justify-start items-center">
-          <div className="flex items-center cursor-pointer" onClick={() => { setActiveTab('home'); setSelectedDest(null); }}>
+          <div className="flex items-center cursor-pointer" onClick={() => { navigate('/'); setSelectedDest(null); }}>
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               viewBox="0 0 520 125" 
@@ -747,14 +751,14 @@ export default function App() {
                         <img
                           src={promoItem.image}
                           alt=""
-                          className="w-full h-full object-cover opacity-80 saturate-125 scale-100 transition-all duration-1000 blur-xl"
+                          className="w-full h-full object-cover opacity-80 saturate-125 scale-100 transition-all duration-1000 blur-sm md:blur-xl"
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
                       </div>
 
-                      {/* Background soft glowing orb matching active theme */}
-                      <div className={`absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] opacity-[0.12] pointer-events-none bg-gradient-to-br ${
+                      {/* Background soft glowing orb matching active theme - hidden on mobile for performance */}
+                      <div className={`hidden md:block absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] opacity-[0.12] pointer-events-none bg-gradient-to-br ${
                         promoItem.season === 'spring' ? 'from-pink-500' :
                         promoItem.season === 'summer' ? 'from-amber-500' :
                         promoItem.season === 'monsoon' ? 'from-teal-500' : 'from-blue-500'
@@ -790,7 +794,7 @@ export default function App() {
                                 Claim Complimentary Upgrades
                               </button>
                               <button
-                                onClick={() => setActiveTab('destinations')}
+                                onClick={() => navigate('/destinations')}
                                 className="py-2.5 px-5 sm:py-3 sm:px-6 text-[10px] sm:text-xs text-white hover:text-zinc-300 font-bold tracking-wide rounded-xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 transition-all cursor-pointer"
                               >
                                 Browse Other Passports
@@ -1782,7 +1786,7 @@ export default function App() {
                 Connect directly with our 24/7 Priority Concierge. We handle unique food allergy mappings, heavy camera drybag cargo and honeymoon settings.
               </p>
               <button
-                onClick={() => setActiveTab('support')}
+                onClick={() => navigate('/support')}
                 className={`py-2 px-5 text-xs font-bold rounded-xl text-black cursor-pointer inline-block ${currentTheme.accentBg}`}
               >
                 Connect Support Desk
@@ -1838,8 +1842,6 @@ export default function App() {
         currentTheme={currentTheme}
         season={season}
         setSeason={(newSeason) => setSeason(newSeason as any)}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
         setSelectedDest={setSelectedDest}
         currentUser={currentUser}
         onLoginClick={() => setShowAuthModal(true)}
