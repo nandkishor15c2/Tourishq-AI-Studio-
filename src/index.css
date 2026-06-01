@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+SA+Beginner:wght@400..700&family=Manrope:wght@200..800&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Mont';
+  src: url('https://raw.githubusercontent.com/nandkishor15c2/Travel-Web-Component/main/mont/Mont-ExtraLightDEMO.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mont';
+  src: url('https://raw.githubusercontent.com/nandkishor15c2/Travel-Web-Component/main/mont/Mont-HeavyDEMO.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@theme {
+  --font-sans: "Manrope", "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Mont", "Playfair Display", Georgia, serif;
+  --font-mono: "JetBrains Mono", SFMono-Regular, monospace;
+  --font-edu: "Edu SA Beginner", cursive, sans-serif;
+  --color-accent: #FF4D00;
+  --color-accent-hover: #E04300;
+  --color-glassbg: rgba(255, 255, 255, 0.05);
+  --color-glassborder: rgba(255, 255, 255, 0.1);
+}
+
+/* Immersive UI Custom elements */
+.logo-dot {
+  width: 12px;
+  height: 12px;
+  background: #FF4D00;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #FF4D00;
+}
+
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 77, 0, 0.15) 0%, transparent 40%), radial-gradient(circle at 20% 80%, rgba(64, 123, 255, 0.1) 0%, transparent 50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Animations that power the 60fps seasonal micro effects */
+
+/* Rain droplet animation */
+@keyframes fall {
+  0% {
+    transform: translateY(-20px) translateX(0) rotate(15deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(105vh) translateX(50px) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+/* Petals blossom drift animation */
+@keyframes drift {
+  0% {
+    transform: translateY(-20px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(105vh) translateX(120px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Snow crystal drift animation */
+@keyframes snow {
+  0% {
+    transform: translateY(-20px) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(105vh) translateX(-40px);
+    opacity: 0;
+  }
+}
+
+/* Sunset flare fade and pulse animation */
+@keyframes sunflare {
+  0%, 100% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.15;
+  }
+  50% {
+    transform: scale(1.15) translate(-10px, 15px);
+    opacity: 0.35;
+  }
+}
+
+.animate-rain-1 {
+  animation: fall 1.2s linear infinite;
+}
+.animate-rain-2 {
+  animation: fall 1.8s linear infinite;
+  animation-delay: 0.3s;
+}
+.animate-rain-3 {
+  animation: fall 2.2s linear infinite;
+  animation-delay: 0.7s;
+}
+
+.animate-petal-1 {
+  animation: drift 6s ease-in-out infinite;
+}
+.animate-petal-2 {
+  animation: drift 8s ease-in-out infinite;
+  animation-delay: 2s;
+}
+.animate-petal-3 {
+  animation: drift 10s ease-in-out infinite;
+  animation-delay: 4s;
+}
+
+.animate-snow-1 {
+  animation: snow 4s linear infinite;
+}
+.animate-snow-2 {
+  animation: snow 6s linear infinite;
+  animation-delay: 1.5s;
+}
+.animate-snow-3 {
+  animation: snow 8s linear infinite;
+  animation-delay: 3s;
+}
+
+.animate-sunbeam {
+  animation: sunflare 15s ease-in-out infinite;
+}
+
+/* Custom premium visual features */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.05); /* matches Design HTML --glass */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* matches Design HTML --glass-border */
+}
+
+.glassmorphism-light {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Hide scrollbars for mobile design elegance, but support scrolling touch swipe. */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Smooth custom sleek scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Glowing text styling */
+.glow-text-summer {
+  text-shadow: 0 0 15px rgba(249, 115, 22, 0.4);
+}
+.glow-text-monsoon {
+  text-shadow: 0 0 15px rgba(20, 184, 166, 0.4);
+}
+.glow-text-spring {
+  text-shadow: 0 0 15px rgba(244, 114, 182, 0.4);
+}
+.glow-text-winter {
+  text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}

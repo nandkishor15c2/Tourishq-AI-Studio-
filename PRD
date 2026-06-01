@@ -1,0 +1,43 @@
+# Tourishq Product Requirements Document (PRD)
+
+## 1. Executive Summary
+Tourishq is a premium, next-generation travel booking and experience companion. It is designed around sleek, high-refresh-rate layouts mimicking premium mobile environments (influenced by the dark glassmorphism of YouTube Music, paired with rich seasonal micro-animations reminiscent of Zomato’s festival visual styling). Key architectural drivers are mobile-first ergonomics, fluid spring physics animations (via @motion), and 60fps scrolling responsiveness.
+
+---
+
+## 2. Core Functional Requirements
+
+### A. Dynamic Views (Public & Discovery)
+1. **Home Page**: High-contrast, ambient background panels, seasonal selection, curated featured deals, customer search bar, and interactive soundscapes/micro-effects.
+2. **About Us Page**: Narrative timeline, values, and fluid intro sequence.
+3. **Destination Explorer**: Visual filter nodes, search bar, visual bento-grids, and interactive highlight overlays.
+4. **Itineraries Selector**: Detailed day-by-day itineraries with interactive expanding cards, timeline bullet traces, map/place tags, and customizable schedules.
+5. **Activities Showcase**: Drag-and-drop bucket lists, active adventure cards, price tiers, and localized time highlights.
+6. **Hotels & Stays**: Boutique property cards with slider galleries, reviews, luxury index ratings, and instant date selection.
+7. **Contact Us & Escalation Flow**: Smooth modal support tickets, live-simulated triage response, contact support hotline, and immediate ticket queue visualization.
+
+### B. Transactional & Account Layers
+8. **Interactive Booking Flow**: Multi-step wizard (Select Package -> Customization -> Attendee Info -> Confirmation) with instant pricing calculates, visual booking summary card, and simulated payment slide.
+9. **Login / Sign Up**: Streamlined phone/email sheet modal, mock verification OTP, and secure session state with avatar personalization.
+10. **Customer Dashboard**: Personalized user space tracking:
+    - *Upcoming bookings* (with countdown timers and boarding passes)
+    - *Past bookings* (with receipt, review/rating inputs, status)
+    - *Live bookings* (showing real-team operational step e.g., "In Transit to Hotel", "Luggage Handled", "Next activity starting soon")
+
+### C. Enterprise Admin & Operator Center
+11. **Internal Team Dashboard**: Real-time revenue reporting with interactive D3/SVG charts, operational analytics, active guest triage list, live inventory toggles, and mock database simulation control panel.
+
+---
+
+## 3. Product Themes & Interactive Design (Zomato-style seasons)
+To deliver unexpected delight, Tourishq supports seasonal dynamic shifting:
+* **Monsoon Mist**: Droplet interactions, cool teal-blue colors, mist glow effects.
+* **Spring Blossom**: Blossoming sakura overlays, warm pinks, soft pastel greens.
+* **Winter Cozy**: Gentle drift animations, warm fire-gold amber, deep frosty indigo.
+* **Summer Sunset**: Energetic sun flare rays, bold orange-to-pink duotones, high contrast panels.
+
+---
+
+## 4. Key Performance Requirements
+* **Mobile-First Structure**: All interfaces are fully optimized with bottom-navigation sheets on mobile layouts.
+* **60fps Interactivity**: Powered fully by inline state optimizations and lightweight `motion` spring states. No layout thrashing.
