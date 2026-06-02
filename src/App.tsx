@@ -53,6 +53,7 @@ import { BlurGlassHeader } from './components/BlurGlassHeader';
 import { AuthContainer } from './components/AuthContainer';
 import { ProductCard } from './components/ProductCard';
 import { SplitCarousel } from './components/SplitCarousel';
+import { ArchHero } from './components/ArchHero';
 
 // Local storage keys for state persistence
 const STORAGE_USER_KEY = 'tourishq_user_state';
@@ -994,6 +995,9 @@ export default function App() {
                   />
                 )}
               />
+
+              {/* --- NEW ARCH CAROUSEL --- */}
+              <ArchHero destinations={destinations} />
 
               {/* Testimonials and Community feedback */}
               <div className="glassmorphism rounded-3xl p-6 md:p-8 border border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6 relative overflow-hidden">
