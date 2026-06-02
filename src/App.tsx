@@ -660,7 +660,7 @@ export default function App() {
       <SeasonalOverlay season={season} />
 
       {/* --- SLEEK FLOATING BRAND LOGO BAR --- */}
-      <header className="py-3.5 px-6 relative z-50 select-none bg-transparent">
+      <header className="py-2 px-6 relative z-50 select-none bg-transparent">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center cursor-pointer" onClick={() => { navigate('/'); setSelectedDest(null); }}>
             <svg 
@@ -786,7 +786,7 @@ export default function App() {
         </div>
       </header>
       {/* --- MAIN PAGE GRAPHICS & ACTIONS --- */}
-      <main className="max-w-7xl mx-auto px-4 py-6 md:py-8 relative z-10">
+      <main className="max-w-7xl mx-auto px-4 pt-0 pb-6 md:pb-8 relative z-10">
         {/* VIEW 1: HOME LANDING PAGE */}
         {activeTab === 'home' && !selectedDest && (() => {
           const activePromo = PROMOTIONS[activePromoIndex] || PROMOTIONS[0];
