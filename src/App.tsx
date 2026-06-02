@@ -862,8 +862,13 @@ export default function App() {
                           className="w-full h-full object-cover opacity-70 md:opacity-80 md:saturate-125 scale-100"
                           style={{ willChange: 'transform' }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
+                        {/* Blur gradient: clear on the right side */}
+                        <div 
+                          className="absolute inset-0 backdrop-blur-xl md:backdrop-blur-2xl"
+                          style={{ WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 80%)', maskImage: 'linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 80%)' }} 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10" />
                       </div>
 
                       <div className="w-full p-5 sm:p-6 md:p-12 relative z-10 text-left">
@@ -872,7 +877,7 @@ export default function App() {
                           <div className="col-span-1 md:col-span-7 space-y-4 md:space-y-6">
                             <div className="space-y-2 md:space-y-3">
                               <span className={`inline-flex items-center gap-1.5 px-3 py-1 text-[10px] tracking-widest font-black uppercase rounded-lg bg-white/5 border border-white/10 ${promoTheme.colorClass}`}>
-                                <Sparkles size={11} /> Seasonal Promotional Event
+                                <Sparkles size={11} /> {promoItem.badge}
                               </span>
                               <h1 className="text-2xl sm:text-3xl md:text-xl lg:text-2xl xl:text-3xl font-serif font-black text-white leading-tight">
                                 {promoItem.title}
@@ -904,25 +909,6 @@ export default function App() {
                             </div>
                           </div>
 
-                          {/* Right Side: Promotion Imagery Spotlight */}
-                          <div className="hidden md:block md:col-span-5">
-                            <div className="relative h-44 md:h-64 rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
-                              <img 
-                                src={promoItem.image} 
-                                alt={promoItem.title} 
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                              
-                              {/* Floating Badge */}
-                              <span 
-                                className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-widest text-black px-3 py-1 rounded-md shadow-lg"
-                                style={{ backgroundColor: promoItem.season === 'spring' ? '#F472B6' : promoItem.season === 'summer' ? '#009e83' : promoItem.season === 'monsoon' ? '#2DD4BF' : '#ffbc00' }}
-                              >
-                                ★ {promoItem.badge}
-                              </span>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </motion.div>
