@@ -856,15 +856,17 @@ export default function App() {
                     >
                       {/* Immersive background image with smooth lightened overlay */}
                       <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden rounded-[32px] bg-black">
+                        {/* Base Sharp Image */}
                         <img
                           src={promoItem.image}
                           alt=""
-                          className="w-full h-full object-cover opacity-70 md:opacity-80 md:saturate-125 scale-100"
-                          style={{ willChange: 'transform' }}
+                          className="absolute inset-0 w-full h-full object-cover opacity-70 md:opacity-80 md:saturate-125 scale-100"
                         />
-                        {/* Blur gradient: clear on the right side */}
-                        <div 
-                          className="absolute inset-0 backdrop-blur-xl md:backdrop-blur-2xl"
+                        {/* High-Performance Blurred Masked Image Overlay */}
+                        <img
+                          src={promoItem.image}
+                          alt=""
+                          className="absolute inset-0 w-full h-full object-cover opacity-70 md:opacity-80 md:saturate-125 scale-100 blur-xl md:blur-2xl"
                           style={{ WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 80%)', maskImage: 'linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 80%)' }} 
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
