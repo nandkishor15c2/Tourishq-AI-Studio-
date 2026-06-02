@@ -10,46 +10,31 @@ export const Footer: React.FC = () => {
     let reverseInterval: any;
 
     const handleEnded = () => {
-      video.pause();
-      
-      video.playbackRate = -1;
-      
-      // Fallback if browser ignores negative playback rate
-      if (video.playbackRate >= 0) {
-        clearInterval(reverseInterval);
-        reverseInterval = setInterval(() => {
-          if (video.currentTime <= 0.1) {
-            clearInterval(reverseInterval);
-            video.play();
-          } else {
-            // Manual scrub rewind
-            video.currentTime -= 0.05; 
-          }
-        }, 30);
-      } else {
-        video.play();
-      }
-    };
-
-    const handleTimeUpdate = () => {
-      if (video.playbackRate < 0 && video.currentTime <= 0.1) {
-        video.playbackRate = 1;
-        video.play();
-      }
+      // Force manual scrub rewind for cross-browser ping-pong
+      clearInterval(reverseInterval);
+      reverseInterval = setInterval(() => {
+        if (video.currentTime <= 0.1) {
+          clearInterval(reverseInterval);
+          video.play();
+        } else {
+          video.currentTime = Math.max(0, video.currentTime - 0.05);
+        }
+      }, 30);
     };
 
     video.addEventListener('ended', handleEnded);
-    video.addEventListener('timeupdate', handleTimeUpdate);
 
     return () => {
       video.removeEventListener('ended', handleEnded);
-      video.removeEventListener('timeupdate', handleTimeUpdate);
       clearInterval(reverseInterval);
     };
   }, []);
 
   return (
     <footer className="relative pt-12 pb-16 z-20 mt-24 text-white">
+      {/* Smooth fade into above section */}
+      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#050505] to-transparent z-10 pointer-events-none" />
+
       {/* Video Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
