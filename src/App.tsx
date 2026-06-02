@@ -859,19 +859,12 @@ export default function App() {
                         <img
                           src={promoItem.image}
                           alt=""
-                          className="w-full h-full object-cover opacity-70 md:opacity-80 md:saturate-125 md:blur-xl scale-100"
+                          className="w-full h-full object-cover opacity-70 md:opacity-80 md:saturate-125 scale-100"
                           style={{ willChange: 'transform' }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
                       </div>
-
-                      {/* Background soft glowing orb matching active theme - hidden on mobile for performance */}
-                      <div className={`hidden md:block absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[120px] opacity-[0.12] pointer-events-none bg-gradient-to-br ${
-                        promoItem.season === 'spring' ? 'from-pink-500' :
-                        promoItem.season === 'summer' ? 'from-amber-500' :
-                        promoItem.season === 'monsoon' ? 'from-teal-500' : 'from-blue-500'
-                      }`} />
 
                       <div className="w-full p-5 sm:p-6 md:p-12 relative z-10 text-left">
                         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center text-left">
@@ -928,18 +921,6 @@ export default function App() {
                               >
                                 ★ {promoItem.badge}
                               </span>
-
-                              {promoDest && (
-                                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-baseline">
-                                  <div>
-                                    <p className="text-[10px] text-zinc-400 font-mono">Starting package from</p>
-                                    <p className="text-lg font-black text-white font-mono">${promoDest.priceStart}</p>
-                                  </div>
-                                  <span className="text-xs text-amber-300 hover:text-white font-bold flex items-center gap-1 cursor-pointer" onClick={() => setSelectedDest(promoDest)}>
-                                    Explore Route <ChevronRight size={14} />
-                                  </span>
-                                </div>
-                              )}
                             </div>
                           </div>
                         </div>
