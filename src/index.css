@@ -20,8 +20,8 @@
   --font-serif: "Mont", "Playfair Display", Georgia, serif;
   --font-mono: "JetBrains Mono", SFMono-Regular, monospace;
   --font-edu: "Edu SA Beginner", cursive, sans-serif;
-  --color-accent: #FF4D00;
-  --color-accent-hover: #E04300;
+  --color-accent: #009e83;
+  --color-accent-hover: #00826b;
   --color-glassbg: rgba(255, 255, 255, 0.05);
   --color-glassborder: rgba(255, 255, 255, 0.1);
 }
@@ -30,15 +30,15 @@
 .logo-dot {
   width: 12px;
   height: 12px;
-  background: #FF4D00;
+  background: #009e83;
   border-radius: 50%;
-  box-shadow: 0 0 15px #FF4D00;
+  box-shadow: 0 0 15px #009e83;
 }
 
 .atmosphere {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 80% 20%, rgba(255, 77, 0, 0.15) 0%, transparent 40%), radial-gradient(circle at 20% 80%, rgba(64, 123, 255, 0.1) 0%, transparent 50%);
+  background: radial-gradient(circle at 80% 20%, rgba(0, 158, 131, 0.15) 0%, transparent 40%), radial-gradient(circle at 20% 80%, rgba(255, 188, 0, 0.1) 0%, transparent 50%);
   z-index: 0;
   pointer-events: none;
 }

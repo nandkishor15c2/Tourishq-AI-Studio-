@@ -891,7 +891,7 @@ export default function App() {
                               <button
                                 onClick={() => promoDest && setSelectedDest(promoDest)}
                                 className="py-2.5 px-5 sm:py-3 sm:px-6 text-[10px] sm:text-xs font-bold rounded-xl text-black shadow cursor-pointer transition-transform active:scale-95 transition-all"
-                                style={{ backgroundColor: promoItem.season === 'spring' ? '#F472B6' : promoItem.season === 'summer' ? '#FF4D00' : promoItem.season === 'monsoon' ? '#2DD4BF' : '#60A5FA' }}
+                                style={{ backgroundColor: promoItem.season === 'spring' ? '#F472B6' : promoItem.season === 'summer' ? '#009e83' : promoItem.season === 'monsoon' ? '#2DD4BF' : '#ffbc00' }}
                               >
                                 Claim Complimentary Upgrades
                               </button>
@@ -917,7 +917,7 @@ export default function App() {
                               {/* Floating Badge */}
                               <span 
                                 className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-widest text-black px-3 py-1 rounded-md shadow-lg"
-                                style={{ backgroundColor: promoItem.season === 'spring' ? '#F472B6' : promoItem.season === 'summer' ? '#FF4D00' : promoItem.season === 'monsoon' ? '#2DD4BF' : '#60A5FA' }}
+                                style={{ backgroundColor: promoItem.season === 'spring' ? '#F472B6' : promoItem.season === 'summer' ? '#009e83' : promoItem.season === 'monsoon' ? '#2DD4BF' : '#ffbc00' }}
                               >
                                 ★ {promoItem.badge}
                               </span>
@@ -1271,7 +1271,7 @@ export default function App() {
 
                 {/* Local Weather Status Widget */}
                 <div className="bg-black/50 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-left max-w-sm shrink-0 shadow-lg">
-                  <span className="text-[9px] uppercase tracking-widest text-[#FF4D00] font-mono font-black block mb-1">Atmospheric Condition</span>
+                  <span className="text-[9px] uppercase tracking-widest text-[#009e83] font-mono font-black block mb-1">Atmospheric Condition</span>
                   <p className="text-xs font-bold text-white leading-snug">
                     {getDestinationWeather(selectedDest.seasonRecommendation)}
                   </p>
@@ -1487,7 +1487,7 @@ export default function App() {
                           <div className={`absolute -left-2 top-1.5 w-4 h-4 rounded-full flex items-center justify-center border-2 border-stone-950 px-1 font-mono text-[9px] font-bold text-black ${currentTheme.accentBg}`} />
                           
                           <div className="space-y-1.5 text-left">
-                            <span className="text-[10px] uppercase font-bold tracking-widest text-[#FF4D00] font-mono block">Day {it.day} Checkpoint</span>
+                            <span className="text-[10px] uppercase font-bold tracking-widest text-[#009e83] font-mono block">Day {it.day} Checkpoint</span>
                             <h4 className="text-sm font-semibold text-white">{it.title}</h4>
                             <p className="text-xs text-zinc-400 leading-relaxed font-sans">{it.description}</p>
                             
