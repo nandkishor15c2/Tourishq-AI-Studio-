@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Instagram, Twitter, Facebook, Youtube, MapPin, Mail, Phone, ChevronRight } from 'lucide-react';
+import { Instagram, Twitter, Facebook, Youtube, MapPin, Mail, Phone, ChevronRight, Globe, ShieldCheck, Headphones, Gem } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -10,6 +10,47 @@ export const Footer: React.FC = () => {
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#ffbc00]/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        
+        {/* Travel Perks / Trust Badges */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 pb-12 border-b border-white/5">
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-3">
+            <div className="w-10 h-10 rounded-full bg-[#009e83]/10 text-[#009e83] flex items-center justify-center">
+              <Globe className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="text-white text-sm font-bold">Global Destinations</h4>
+              <p className="text-zinc-500 text-xs mt-1">Access to exclusive, high-end retreats worldwide.</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-3">
+            <div className="w-10 h-10 rounded-full bg-[#ffbc00]/10 text-[#ffbc00] flex items-center justify-center">
+              <Gem className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="text-white text-sm font-bold">Bespoke Luxury</h4>
+              <p className="text-zinc-500 text-xs mt-1">Curated aesthetics matching your exact preferences.</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-3">
+            <div className="w-10 h-10 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center">
+              <Headphones className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="text-white text-sm font-bold">24/7 Concierge</h4>
+              <p className="text-zinc-500 text-xs mt-1">Elite support team available throughout your journey.</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-3">
+            <div className="w-10 h-10 rounded-full bg-pink-500/10 text-pink-400 flex items-center justify-center">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="text-white text-sm font-bold">Secure Passport</h4>
+              <p className="text-zinc-500 text-xs mt-1">Private, encrypted travel vaults for your bookings.</p>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16">
           
           {/* Brand & Newsletter Column */}
