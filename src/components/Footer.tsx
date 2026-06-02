@@ -52,78 +52,80 @@ export const Footer: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
-        {/* Main Links Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 border-b border-[#009e83]/10 pb-12">
+        {/* Asymmetrical Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-24 relative z-20">
           
-          {/* Column 1 */}
-          <div className="md:pr-10 md:border-r md:border-[#009e83]/20 space-y-4">
-            <h4 className="text-[#009e83] text-xs font-bold uppercase tracking-widest mb-6">Destinations</h4>
-            <ul className="space-y-3">
-              {['Alpine Escapes', 'Tropical Retreats', 'Desert Safaris', 'Urban Experiences', 'Cultural Tours', 'Seasonal Specials'].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-zinc-400 hover:text-white text-[10px] uppercase tracking-widest transition-colors">{link}</a>
-                </li>
-              ))}
-            </ul>
+          {/* Left: Hook & Newsletter */}
+          <div className="lg:col-span-7 space-y-10 mt-12">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white leading-tight">
+              Ready for the <br />
+              <span className="italic font-light text-[#009e83]">extraordinary?</span>
+            </h2>
+            <p className="text-zinc-400 max-w-md text-sm leading-relaxed">
+              Join our exclusive list to receive curated itineraries, private estate accesses, and invitations to world-class events.
+            </p>
+            
+            {/* Glassmorphic Input */}
+            <div className="relative max-w-md mt-8 group">
+              <input 
+                type="email" 
+                placeholder="Your email address" 
+                className="w-full bg-white/5 border border-white/10 backdrop-blur-md rounded-full py-4 pl-6 pr-32 text-white placeholder-zinc-500 focus:outline-none focus:border-[#009e83]/50 transition-colors"
+              />
+              <button className="absolute right-2 top-2 bottom-2 bg-[#009e83] hover:bg-[#007a65] text-white px-6 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 flex items-center gap-2 group-hover:pr-4">
+                Join
+                <span className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300">→</span>
+              </button>
+            </div>
           </div>
 
-          {/* Column 2 */}
-          <div className="md:px-10 md:border-r md:border-[#009e83]/20 space-y-4">
-            <h4 className="text-[#009e83] text-xs font-bold uppercase tracking-widest mb-6">Concierge</h4>
-            <ul className="space-y-3">
-              {['Bespoke Planning', 'Flight Arrangements', 'Luxury Stays', 'Private Guides', 'Event Access', 'Travel Insurance'].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-zinc-400 hover:text-white text-[10px] uppercase tracking-widest transition-colors">{link}</a>
-                </li>
-              ))}
-            </ul>
+          {/* Right: Minimal Links */}
+          <div className="lg:col-span-5 grid grid-cols-2 gap-8 lg:pl-12 lg:mt-12">
+            <div className="space-y-6">
+              <h4 className="text-white text-[10px] font-bold uppercase tracking-widest opacity-50">Explore</h4>
+              <ul className="space-y-4">
+                {['Destinations', 'Private Aviation', 'Yacht Charters', 'Concierge', 'Experiences'].map((link) => (
+                  <li key={link} className="group cursor-pointer flex items-center">
+                    <span className="text-zinc-300 group-hover:text-white transition-colors">{link}</span>
+                    <span className="text-[#009e83] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-2 transition-all duration-300">→</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div className="space-y-6">
+              <h4 className="text-white text-[10px] font-bold uppercase tracking-widest opacity-50">Studio</h4>
+              <ul className="space-y-4">
+                {['About Us', 'Journal', 'Careers', 'Contact', 'Press'].map((link) => (
+                  <li key={link} className="group cursor-pointer flex items-center">
+                    <span className="text-zinc-300 group-hover:text-white transition-colors">{link}</span>
+                    <span className="text-[#009e83] opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-2 transition-all duration-300">→</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Column 3 */}
-          <div className="md:px-10 md:border-r md:border-[#009e83]/20 space-y-4">
-            <h4 className="text-[#009e83] text-xs font-bold uppercase tracking-widest mb-6">Company</h4>
-            <ul className="space-y-3">
-              {['About Studio', 'Our Story', 'Journal & Press', 'Careers', 'Sustainability', 'Partners'].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-zinc-400 hover:text-white text-[10px] uppercase tracking-widest transition-colors">{link}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4 */}
-          <div className="md:pl-10 space-y-4">
-            <h4 className="text-[#009e83] text-xs font-bold uppercase tracking-widest mb-6">Resources</h4>
-            <ul className="space-y-3">
-              {['Support Center', 'Travel Advisories', 'Client Portal', 'Gift Cards', 'Privacy Policy', 'Terms of Service'].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-zinc-400 hover:text-white text-[10px] uppercase tracking-widest transition-colors">{link}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
-            <div className="w-6 h-6 rounded-md bg-[#009e83]/20 flex items-center justify-center">
-              <span className="text-[9px] font-serif font-black text-[#009e83]">Tq</span>
-            </div>
-            <span className="text-xs font-serif font-black text-[#009e83] tracking-widest uppercase">Tourishq</span>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-white/10 pt-8 pb-4 relative z-20">
+          <div className="flex items-center gap-6 text-[9px] uppercase tracking-widest text-zinc-500">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
           </div>
-
-          <p className="text-[#009e83]/60 text-[9px] uppercase tracking-widest text-center">
-            &copy; {new Date().getFullYear()} Tourishq AI Studio. A luxury travel service provider.
+          <p className="text-zinc-500 text-[9px] uppercase tracking-widest">
+            &copy; {new Date().getFullYear()} Tourishq AI Studio
           </p>
-
-          <div className="flex items-center gap-4 text-[#009e83]/60 text-[9px] uppercase tracking-widest">
-            <a href="#" className="hover:text-[#009e83] transition-colors">Global Site</a>
-            <span>|</span>
-            <a href="#" className="hover:text-[#009e83] transition-colors">Contact Us</a>
-          </div>
         </div>
+
+      </div>
+
+      {/* Oversized Background Typography */}
+      <div className="absolute bottom-[-3%] left-0 w-full text-center pointer-events-none z-0 overflow-hidden flex justify-center">
+        <h1 className="text-[16vw] font-serif font-black text-white leading-none tracking-tighter opacity-[0.03] select-none uppercase whitespace-nowrap">
+          Tourishq
+        </h1>
       </div>
     </footer>
   );
