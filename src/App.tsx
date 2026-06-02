@@ -659,7 +659,7 @@ export default function App() {
       <SeasonalOverlay season={season} />
 
       {/* --- SLEEK FLOATING BRAND LOGO BAR --- */}
-      <header className="py-3.5 px-6 border-b border-white/5 bg-zinc-950/20 backdrop-blur-sm relative z-50 select-none">
+      <header className="py-3.5 px-6 relative z-50 select-none bg-transparent">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center cursor-pointer" onClick={() => { navigate('/'); setSelectedDest(null); }}>
             <svg 
