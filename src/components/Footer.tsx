@@ -2,7 +2,21 @@ import React from 'react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="relative bg-white pt-12 pb-16 z-20 mt-24">
+    <footer className="relative pt-12 pb-16 z-20 mt-24 text-white">
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/footer-bg.mp4" type="video/mp4" />
+        </video>
+        {/* Blur Overlay */}
+        <div className="absolute inset-0 backdrop-blur-md bg-black/40" />
+      </div>
       {/* Landscape Silhouette (bleeds upward) */}
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
@@ -41,7 +55,7 @@ M678,212 L675,217 L677,219 L679,214 Z
             <ul className="space-y-3">
               {['Alpine Escapes', 'Tropical Retreats', 'Desert Safaris', 'Urban Experiences', 'Cultural Tours', 'Seasonal Specials'].map((link) => (
                 <li key={link}>
-                  <a href="#" className="text-zinc-600 hover:text-zinc-900 text-[10px] uppercase tracking-widest transition-colors">{link}</a>
+                  <a href="#" className="text-zinc-400 hover:text-white text-[10px] uppercase tracking-widest transition-colors">{link}</a>
                 </li>
               ))}
             </ul>
@@ -53,7 +67,7 @@ M678,212 L675,217 L677,219 L679,214 Z
             <ul className="space-y-3">
               {['Bespoke Planning', 'Flight Arrangements', 'Luxury Stays', 'Private Guides', 'Event Access', 'Travel Insurance'].map((link) => (
                 <li key={link}>
-                  <a href="#" className="text-zinc-600 hover:text-zinc-900 text-[10px] uppercase tracking-widest transition-colors">{link}</a>
+                  <a href="#" className="text-zinc-400 hover:text-white text-[10px] uppercase tracking-widest transition-colors">{link}</a>
                 </li>
               ))}
             </ul>
@@ -65,7 +79,7 @@ M678,212 L675,217 L677,219 L679,214 Z
             <ul className="space-y-3">
               {['About Studio', 'Our Story', 'Journal & Press', 'Careers', 'Sustainability', 'Partners'].map((link) => (
                 <li key={link}>
-                  <a href="#" className="text-zinc-600 hover:text-zinc-900 text-[10px] uppercase tracking-widest transition-colors">{link}</a>
+                  <a href="#" className="text-zinc-400 hover:text-white text-[10px] uppercase tracking-widest transition-colors">{link}</a>
                 </li>
               ))}
             </ul>
@@ -77,7 +91,7 @@ M678,212 L675,217 L677,219 L679,214 Z
             <ul className="space-y-3">
               {['Support Center', 'Travel Advisories', 'Client Portal', 'Gift Cards', 'Privacy Policy', 'Terms of Service'].map((link) => (
                 <li key={link}>
-                  <a href="#" className="text-zinc-600 hover:text-zinc-900 text-[10px] uppercase tracking-widest transition-colors">{link}</a>
+                  <a href="#" className="text-zinc-400 hover:text-white text-[10px] uppercase tracking-widest transition-colors">{link}</a>
                 </li>
               ))}
             </ul>
