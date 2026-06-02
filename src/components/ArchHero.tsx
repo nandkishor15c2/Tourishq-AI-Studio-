@@ -108,7 +108,7 @@ export const ArchHero: React.FC<ArchHeroProps> = ({ destinations }) => {
         </h2>
         
         <p className="text-xs md:text-base text-zinc-400 max-w-xl mx-auto leading-relaxed">
-          Transform your travel ideas into breathtaking, precision-crafted visual journeys using cutting-edge Tourishq AI modeling.
+          Turn ideas into precision-crafted visual journeys instantly.
         </p>
 
         <div className="pointer-events-auto">
@@ -132,21 +132,21 @@ export const ArchHero: React.FC<ArchHeroProps> = ({ destinations }) => {
         <div className="space-y-2 md:space-y-3">
           <h3 className="text-lg font-serif font-bold text-white">Realistic Results</h3>
           <p className="text-xs md:text-sm text-zinc-500 leading-relaxed max-w-[250px] mx-auto">
-            Hyper-realistic destination previews and lodging visuals that look professionally crafted.
+            Hyper-realistic previews.
           </p>
         </div>
         
         <div className="space-y-2 md:space-y-3">
           <h3 className="text-lg font-serif font-bold text-white">Fast Generation</h3>
           <p className="text-xs md:text-sm text-zinc-500 leading-relaxed max-w-[250px] mx-auto">
-            Turn abstract travel concepts into complete daily visual itineraries in seconds.
+            Build itineraries in seconds.
           </p>
         </div>
 
         <div className="space-y-2 md:space-y-3">
           <h3 className="text-lg font-serif font-bold text-white">Diverse Styles</h3>
           <p className="text-xs md:text-sm text-zinc-500 leading-relaxed max-w-[250px] mx-auto">
-            Choose from a wide range of aesthetic options—from minimalist luxury to vibrant adventure.
+            Range of aesthetic options.
           </p>
         </div>
       </motion.div>

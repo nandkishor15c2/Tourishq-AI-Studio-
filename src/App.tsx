@@ -32,7 +32,11 @@ import {
   MessageCircle,
   LayoutDashboard,
   Play,
-  Pause
+  Pause,
+  Sun,
+  CloudRain,
+  Snowflake,
+  ChevronUp
 } from 'lucide-react';
 
 import { SeasonType, Destination, Booking, SupportTicket, User as UserType } from './types';
@@ -309,6 +313,18 @@ export default function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const activeTab = location.pathname === '/' ? 'home' : location.pathname.split('/')[1] || 'home';
+
+  const [showSeasonDropdown, setShowSeasonDropdown] = useState(false);
+
+  const getSeasonIcon = (s: string) => {
+    switch (s) {
+      case 'spring': return <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-pink-400" />;
+      case 'summer': return <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-orange-400 animate-spin-slow" />;
+      case 'monsoon': return <CloudRain className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />;
+      case 'winter': return <Snowflake className="w-4 h-4 sm:w-5 sm:h-5 text-sky-400" />;
+      default: return <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-white" />;
+    }
+  };
 
   // Navigation and view focus state
   const [selectedDest, setSelectedDest] = useState<Destination | null>(null);
@@ -643,8 +659,8 @@ export default function App() {
       <SeasonalOverlay season={season} />
 
       {/* --- SLEEK FLOATING BRAND LOGO BAR --- */}
-      <header className="py-3.5 px-6 border-b border-white/5 bg-zinc-950/20 backdrop-blur-sm relative z-30 select-none">
-        <div className="max-w-7xl mx-auto flex justify-start items-center">
+      <header className="py-3.5 px-6 border-b border-white/5 bg-zinc-950/20 backdrop-blur-sm relative z-50 select-none">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center cursor-pointer" onClick={() => { navigate('/'); setSelectedDest(null); }}>
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -674,6 +690,97 @@ export default function App() {
                 ourishq
               </text>
             </svg>
+          </div>
+
+          {/* HEADER UTILITIES: SEASON SWITCHER & PROFILE TRIGGER */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            
+            <div className="relative">
+              <button
+                onClick={() => setShowSeasonDropdown(!showSeasonDropdown)}
+                className="flex items-center justify-center p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 hover:scale-105 active:scale-95 transition-all text-white relative group cursor-pointer"
+                type="button"
+                title="Transform Atmospheric Vibe"
+              >
+                {getSeasonIcon(season)}
+                <ChevronUp className={`w-3.5 h-3.5 text-zinc-400 ml-1 transition-transform duration-300 ${showSeasonDropdown ? 'rotate-180' : ''}`} />
+              </button>
+
+              <AnimatePresence>
+                {showSeasonDropdown && (
+                  <>
+                    <div className="fixed inset-0 z-40 bg-transparent" onClick={() => setShowSeasonDropdown(false)} />
+                    <motion.div
+                      initial={{ opacity: 0, y: -15, scale: 0.92 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -15, scale: 0.92 }}
+                      transition={{ type: 'spring', stiffness: 450, damping: 26 }}
+                      className="absolute top-full right-0 mt-3 bg-zinc-950/95 backdrop-blur-xl border border-white/15 rounded-2xl p-3 shadow-2xl z-50 w-44 space-y-1.5"
+                    >
+                      <div className="text-[10px] font-mono tracking-wider text-zinc-500 uppercase pb-1 px-1 border-b border-white/5 font-semibold">
+                        Transform Mood
+                      </div>
+                      {[
+                        { id: 'spring', label: '🌸 Warm Spring', col: 'hover:bg-pink-500/10 hover:text-pink-400' },
+                        { id: 'summer', label: '☀️ Clear Summer', col: 'hover:bg-amber-500/10 hover:text-amber-400' },
+                        { id: 'monsoon', label: '🌧️ Misty Monsoon', col: 'hover:bg-teal-500/10 hover:text-teal-400' },
+                        { id: 'winter', label: '❄️ Snowy Winter', col: 'hover:bg-blue-500/10 hover:text-blue-400' },
+                      ].map((sOption) => (
+                        <button
+                          key={sOption.id}
+                          onClick={() => {
+                            setSeason(sOption.id as any);
+                            setShowSeasonDropdown(false);
+                          }}
+                          className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-colors duration-200 flex items-center justify-between ${
+                            season === sOption.id 
+                              ? 'bg-white/10 text-white border border-white/10' 
+                              : 'text-zinc-400 border border-transparent ' + sOption.col
+                          }`}
+                        >
+                          <span>{sOption.label}</span>
+                          {season === sOption.id && <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />}
+                        </button>
+                      ))}
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {currentUser ? (
+              <div className="flex items-center gap-1.5">
+                <div 
+                  onClick={() => navigate('/dashboard')} 
+                  className="w-9 h-9 rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all cursor-pointer relative group flex items-center justify-center bg-white/5 hover:bg-white/10"
+                  title={`${currentUser.name}'s Escapes`}
+                >
+                  {currentUser.avatar ? (
+                    <img src={currentUser.avatar} alt="User Avatar" className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-[11px] font-bold font-mono text-white">{currentUser.name.slice(0, 2).toUpperCase()}</span>
+                  )}
+                </div>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="hidden sm:flex p-2 rounded-xl bg-white/5 border border-white/5 hover:bg-red-500/15 hover:border-red-500/20 text-zinc-400 hover:text-red-400 cursor-pointer active:scale-95 transition-all"
+                  title="Disconnect"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setShowAuthModal(true)}
+                className="flex items-center gap-1.5 px-3 py-2 text-xs font-extrabold rounded-xl bg-white text-black hover:bg-zinc-200 transition-colors cursor-pointer select-none border border-transparent active:scale-95 duration-100 shrink-0 shadow-lg"
+                type="button"
+              >
+                <User className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Connect</span>
+              </button>
+            )}
+
           </div>
         </div>
       </header>
@@ -918,10 +1025,11 @@ export default function App() {
                 )}
               />
 
-              {/* --- CAROUSEL 3: TOP 10 ITINERARY --- */}
+              {/* --- CAROUSEL 3: HIGH-END PREMIER OPTIONS --- */}
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.7 }}>
               <SplitCarousel
-                id="top-itinerary-carousel"
-                category="Elite Trails & Activities"
+                id="premier-destinations-carousel"
+                category="Elite Trails"
                 title="Top Bespoke Itineraries"
                 subtitle="Hand-walked expeditions with direct escorts"
                 description="Explore top rated daily trajectories. Select any custom plan to view pre-scheduled high-grade hotels, transport parameters, and concierge details instantly."
@@ -978,14 +1086,16 @@ export default function App() {
                   );
                 }}
               />
+              </motion.div>
 
               {/* --- CAROUSEL 4: RELEVANT SEASONAL ESCAPES --- */}
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.7 }}>
               <SplitCarousel
                 id="seasonal-escapes-carousel"
-                category="Recommended Trajectories"
-                title={`${currentTheme.label} Seasonal Escapes`}
-                subtitle={`Calibrated strictly for ${season.toUpperCase()} weather profiles`}
-                description="Vibrant selections handpicked specifically for current weather characteristics. Match thermal cabin fireplace log fires or sea excursions effortlessly."
+                category="Seasonal Fits"
+                title={`${currentTheme.label} Escapes`}
+                subtitle="Perfect for current weather."
+                description="Handpicked seasonal selections."
                 themeColor={currentTheme.accent}
                 items={seasonalMatches}
                 renderItem={(dest) => (
@@ -995,6 +1105,7 @@ export default function App() {
                   />
                 )}
               />
+              </motion.div>
 
               {/* --- NEW ARCH CAROUSEL --- */}
               <ArchHero destinations={destinations} />
