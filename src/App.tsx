@@ -54,6 +54,7 @@ import { BookingWizard } from './components/BookingWizard';
 import { SupportTicketSystem } from './components/SupportTicketSystem';
 import { InternalAdminDashboard } from './components/InternalAdminDashboard';
 import { BlurGlassHeader } from './components/BlurGlassHeader';
+import { Footer } from './components/Footer';
 import { AuthContainer } from './components/AuthContainer';
 import { ProductCard } from './components/ProductCard';
 import { SplitCarousel } from './components/SplitCarousel';
@@ -1895,6 +1896,8 @@ export default function App() {
         )}
 
       </main>
+
+      <Footer />
 
       {/* --- FLOATING SECURE AUTHENTICATION DIALOG (Portal container) --- */}
       <AnimatePresence>
