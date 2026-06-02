@@ -651,7 +651,7 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white font-sans overflow-x-hidden relative pb-16">
+    <div className="min-h-screen bg-[#050505] text-white font-sans overflow-x-hidden relative">
       
       {/* Immersive Atmosphere background glows */}
       <div className="atmosphere" />
