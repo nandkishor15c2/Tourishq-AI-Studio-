@@ -79,15 +79,16 @@ export const ArchHero: React.FC<ArchHeroProps> = ({ destinations }) => {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
               >
                 <motion.div
-                  className="w-full h-full rounded-[24px] sm:rounded-[36px] overflow-hidden border border-white/10 shadow-2xl bg-zinc-900 cursor-pointer"
+                  className="w-full h-full rounded-[24px] sm:rounded-[36px] overflow-hidden border border-white/10 shadow-2xl bg-zinc-900 cursor-pointer transform-gpu"
+                  style={{ WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
                   whileHover={{ 
                     scale: 1.15, 
                     boxShadow: '0 25px 50px -12px rgba(255, 255, 255, 0.15)'
                   }}
                   transition={{ duration: 0.15 }} // fast hover speed
                 >
-                  <img src={dest.image} alt={dest.name} className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                  <img src={dest.image} alt={dest.name} className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity rounded-[24px] sm:rounded-[36px]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none rounded-[24px] sm:rounded-[36px]" />
                 </motion.div>
               </motion.div>
             </motion.div>
