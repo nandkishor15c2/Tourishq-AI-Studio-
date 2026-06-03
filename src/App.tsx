@@ -798,7 +798,7 @@ export default function App() {
             <div className="space-y-16">
               
               {/* --- ADVANCED PROMOTIONAL HERO WITH THEMES (STACK MODE) --- */}
-              <div className="relative w-full h-[495px] sm:h-[455px] md:h-[435px] lg:h-[415px] pb-12">
+              <div className="relative w-full h-[645px] sm:h-[605px] md:h-[585px] lg:h-[565px] pb-12">
                 {PROMOTIONS.map((promoItem, idx) => {
                   const promoTheme = SEASONAL_THEMES_DATA.find(t => t.id === promoItem.season) || SEASONAL_THEMES_DATA[0];
                   const promoDest = destinations.find(d => d.id === promoItem.destinationId);
@@ -853,7 +853,7 @@ export default function App() {
                       style={{ pointerEvents: isTop ? 'auto' : 'none', willChange: 'transform, opacity' }}
                       animate={getStackStyles(relativeIndex)}
                       transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute inset-x-0 top-0 h-[450px] sm:h-[410px] md:h-[390px] lg:h-[370px] rounded-[32px] overflow-hidden bg-zinc-950 border border-white/10 shadow-2xl flex items-center"
+                      className="absolute inset-x-0 top-0 h-[600px] sm:h-[560px] md:h-[540px] lg:h-[520px] rounded-[32px] overflow-hidden bg-zinc-950 border border-white/10 shadow-2xl flex items-center"
                     >
                       {/* Immersive background image with smooth lightened overlay */}
                       <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden rounded-[32px] bg-black">
