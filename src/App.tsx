@@ -1080,24 +1080,7 @@ export default function App() {
               {/* --- NEW ARCH CAROUSEL --- */}
               <ArchHero destinations={destinations} />
 
-              {/* Testimonials and Community feedback */}
-              <div className="glassmorphism rounded-3xl p-6 md:p-8 border border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6 relative overflow-hidden">
-                <div className="space-y-2 col-span-3 border-b border-white/5 pb-4 text-left">
-                  <span className="text-xs uppercase tracking-widest text-zinc-400 font-semibold font-mono">Authentic Echoes</span>
-                  <h3 className="text-xl font-bold text-white font-serif">What Cultured Nomads Report</h3>
-                </div>
-                {MOCK_REVIEWS.map((review) => (
-                  <div key={review.id} className="bg-white/5 p-4 rounded-2xl border border-white/5 flex flex-col justify-between text-left font-sans">
-                    <p className="text-xs text-zinc-200 italic leading-relaxed">
-                      “{review.text}”
-                    </p>
-                    <div className="mt-4 pt-3 border-t border-white/5 flex justify-between items-center">
-                      <span className="text-[10px] font-bold text-zinc-400 font-mono">{review.user}</span>
-                      <span className="text-[10px] font-semibold text-amber-400">Verified Explorer</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+
 
               {/* Simple Visual timeline explaining custom Escrow protection */}
               <div className="text-center space-y-4 py-4">
