@@ -34,8 +34,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ dest, onClick, rank })
   // Map our database Destination type directly to the exact Travel Component's variables
   const name = dest.name;
   const destination = dest.country;
-  const days = dest.itineraries.length;
-  const nights = dest.itineraries.length > 1 ? dest.itineraries.length - 1 : 1;
+  const itins = dest.itineraries || dest.products?.[0]?.itinerary || [];
+  const days = itins.length || 5;
+  const nights = days > 1 ? days - 1 : 4;
   const tags = [dest.seasonRecommendation.toUpperCase(), dest.country];
   const price = dest.priceStart;
   const image = {

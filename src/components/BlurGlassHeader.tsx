@@ -34,7 +34,6 @@ interface BlurGlassHeaderProps {
   };
   season: 'spring' | 'summer' | 'monsoon' | 'winter';
   setSeason: (season: 'spring' | 'summer' | 'monsoon' | 'winter') => void;
-  setSelectedDest: (dest: Destination | null) => void;
   currentUser: any;
   onLoginClick: () => void;
   onLogoutClick: () => void;
@@ -44,7 +43,7 @@ const getTabIcon = (label: string) => {
   switch (label) {
     case 'Home':
       return <Home className="w-5 h-5" />;
-    case 'Destinations':
+    case 'Search':
       return <Compass className="w-5 h-5" />;
     case 'Concierge':
       return <Headphones className="w-5 h-5" />;
@@ -146,7 +145,6 @@ export const BlurGlassHeader: React.FC<BlurGlassHeaderProps> = ({
   currentTheme,
   season,
   setSeason,
-  setSelectedDest,
   currentUser,
   onLoginClick,
   onLogoutClick,
@@ -176,7 +174,7 @@ export const BlurGlassHeader: React.FC<BlurGlassHeaderProps> = ({
   // List of standard items
   const menuItems = [
     { label: 'Home', id: 'home' },
-    { label: 'Destinations', id: 'destinations' },
+    { label: 'Search', id: 'search' },
     { label: 'Concierge', id: 'support' },
     { label: 'My Escapes', id: 'dashboard' },
     { label: 'About', id: 'about' },
@@ -256,7 +254,7 @@ export const BlurGlassHeader: React.FC<BlurGlassHeaderProps> = ({
         {/* BRAND SIGNATURE & LOGO DESIGN - Hidden on mobile to fit elements */}
         {!isMobile && (
           <div 
-            onClick={() => { navigate('/'); setSelectedDest(null); }}
+            onClick={() => { navigate('/'); }}
             className="flex items-center gap-1.5 sm:gap-2 cursor-pointer select-none border-r border-white/10 pr-2.5 sm:pr-3.5 py-1.5 hover:opacity-90 transition-opacity"
           >
             <div className="w-7 h-7 rounded-lg bg-white/5 border border-white/15 flex items-center justify-center shadow-inner relative overflow-hidden group">
@@ -270,7 +268,7 @@ export const BlurGlassHeader: React.FC<BlurGlassHeaderProps> = ({
         )}
 
         {/* FLOATING DOCK NAV ITEMS */}
-        <div className="flex items-center gap-1 sm:gap-1.5">
+        <div className="flex items-center justify-between w-full sm:w-auto sm:justify-start gap-1 sm:gap-1.5">
           {menuItems.map((item, i) => {
             const isActive = activeTab === item.id;
             return (
@@ -287,7 +285,6 @@ export const BlurGlassHeader: React.FC<BlurGlassHeaderProps> = ({
                   distance={activeDistance}
                   onClick={() => {
                     navigate(item.id === 'home' ? '/' : `/${item.id}`);
-                    setSelectedDest(null);
                   }}
                 />
               </div>

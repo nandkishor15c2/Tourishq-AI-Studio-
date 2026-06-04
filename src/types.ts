@@ -18,8 +18,43 @@ export interface ItineraryDay {
   day: number;
   title: string;
   description: string;
-  activities: string[];
-  meals: string[];
+  activities?: string[];
+  meals?: string[];
+  location?: string;
+  details?: string | string[]; // support the array format from reference repo
+}
+
+export interface ProductKeyInfo {
+  duration: string;
+  locationsRoute: string;
+  bestSeason: string;
+  tags: string[];
+}
+
+export interface ProductPrice {
+  startingFrom: number | string;
+  per: string;
+  disclaimer?: string;
+  offers?: { code: string; description: string }[];
+  inclusionsSummary?: { icon: string; text: string }[];
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  description: {
+    short: string;
+    full: string;
+  };
+  images: { src: string; alt: string }[];
+  keyInformation: ProductKeyInfo;
+  tripHighlights: string[];
+  itinerary: ItineraryDay[];
+  inclusionsExclusions: {
+    inclusions: string[];
+    exclusions: string[];
+  };
+  price: ProductPrice;
 }
 
 export interface Activity {
@@ -53,7 +88,22 @@ export interface Destination {
   priceStart: number;
   image: string;
   description: string;
-  itineraries: ItineraryDay[];
+  regionDetails?: {
+    weather: string;
+    population: string;
+    language: string;
+    currency: string;
+  };
+  blog?: {
+    title: string;
+    excerpt: string;
+    fullText: string;
+    author: string;
+    readTime: string;
+    image: string;
+  };
+  itineraries?: ItineraryDay[]; // legacy
+  products?: Product[];
   hotels: Hotel[];
   activities: Activity[];
 }

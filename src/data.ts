@@ -16,27 +16,82 @@ export const DESTINATIONS: Destination[] = [
     priceStart: 1850,
     image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800&auto=format&fit=crop',
     description: 'Immerse in ancient shrines, slow-brewing tea ceremonies, and pink canopy clouds during the beautiful Spring blossom season.',
-    itineraries: [
+    regionDetails: {
+      weather: '15°C - 20°C (Mild)',
+      population: '1.45 Million',
+      language: 'Japanese',
+      currency: 'Yen (JPY)'
+    },
+    blog: {
+      title: 'The Silent Whispers of Kyoto’s Bamboo Forests',
+      excerpt: 'Discovering the spiritual heart of Japan through its most iconic and serene natural monuments.',
+      fullText: 'Kyoto is not just a city; it is an experience of time standing still. As you walk through the towering stalks of the Arashiyama bamboo grove, the sound of the wind rustling the leaves creates a meditative symphony. This is just the beginning of a journey that takes you through centuries-old tea houses in Gion, where geishas still tread softly on cobblestone streets. Every meal is a Kaiseki masterpiece, every shrine a testament to Shinto elegance. To truly understand Kyoto, one must embrace the concept of wabi-sabi—finding beauty in the imperfect and the transient. Whether you are sipping matcha overlooking a dry landscape garden or witnessing the explosive pink hues of cherry blossom season, Kyoto offers a profound luxury: peace.',
+      author: 'Elias Thorne',
+      readTime: '4 min read',
+      image: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?q=80&w=1200&auto=format&fit=crop'
+    },
+    products: [
       {
-        day: 1,
-        title: 'Arrival & Gion Lanterns',
-        description: 'Check in to Ryokan, evening walk under floating lanterns of Gion district.',
-        activities: ['Gion Evening Walk', 'Welcome Kaiseki Feast'],
-        meals: ['Breakfast', 'Dinner']
-      },
-      {
-        day: 2,
-        title: 'Arashiyama Bamboo & River Boat',
-        description: 'Morning walk in the soaring bamboo trails followed by dynamic traditional wooden river boating.',
-        activities: ['Bamboo Grove Exploration', 'Hozu River Boat Cruise'],
-        meals: ['Breakfast', 'Lunch']
-      },
-      {
-        day: 3,
-        title: 'Kiyomizu-dera & Golden Pavilion',
-        description: 'Explore Kyoto’s iconic architectural masterworks with panoramic city views.',
-        activities: ['Golden Pavilion Tour', 'Sipping Sacred Water Experience'],
-        meals: ['Breakfast']
+        id: 'kyoto-golden-route',
+        name: 'Kyoto Golden Route Expedition',
+        description: {
+          short: 'A 7-day deep dive into Kyoto\'s ancient shrines and traditional arts.',
+          full: 'Experience the spiritual heart of Japan. This fully curated 7-day expedition takes you through the towering stalks of the Arashiyama bamboo grove, centuries-old tea houses in Gion, and the iconic Golden Pavilion. Includes private tea ceremonies and exclusive ryokan stays.'
+        },
+        images: [
+          { src: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1200&auto=format&fit=crop', alt: 'Kyoto Shrine' },
+          { src: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=1200&auto=format&fit=crop', alt: 'Tea Ceremony' }
+        ],
+        keyInformation: {
+          duration: '7 Days / 6 Nights',
+          locationsRoute: 'Kyoto City -> Arashiyama -> Uji -> Nara',
+          bestSeason: 'Spring (March - May)',
+          tags: ['Cultural', 'Luxury']
+        },
+        tripHighlights: [
+          'Private access to Kinkaku-ji (Golden Pavilion) before public opening hours',
+          'Exclusive Geisha tea ceremony in the historic Gion district',
+          'Premium stay at a 5-star traditional Ryokan with private Onsen',
+          'Guided sunrise walk through the Arashiyama Bamboo Grove'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Arrival & Gion Lanterns',
+            description: 'Check in to Ryokan, evening walk under floating lanterns of Gion district.',
+            location: 'Kyoto City',
+            details: ['VIP Airport Transfer', 'Welcome Kaiseki Feast', 'Gion Evening Walk']
+          },
+          {
+            day: 2,
+            title: 'Arashiyama Bamboo & River Boat',
+            description: 'Morning walk in the soaring bamboo trails followed by dynamic traditional wooden river boating.',
+            location: 'Arashiyama',
+            details: ['Bamboo Grove Exploration', 'Hozu River Boat Cruise', 'Private dinner by the river']
+          },
+          {
+            day: 3,
+            title: 'Kiyomizu-dera & Golden Pavilion',
+            description: 'Explore Kyoto’s iconic architectural masterworks with panoramic city views.',
+            location: 'Kyoto City',
+            details: ['Golden Pavilion Tour', 'Sipping Sacred Water Experience']
+          }
+        ],
+        inclusionsExclusions: {
+          inclusions: ['6 Nights 5-Star Ryokan Accommodation', 'All breakfasts and 4 Dinners (Kaiseki)', 'Private English-speaking local guide', 'All temple entrance fees', 'VIP Airport Transfers'],
+          exclusions: ['International Flights', 'Travel Insurance', 'Personal expenses and alcohol']
+        },
+        price: {
+          startingFrom: 3250,
+          per: 'Person',
+          disclaimer: '* Prices are subject to availability and currency exchange rates.',
+          offers: [{ code: 'EARLYBIRD', description: 'Book 90 days in advance for a complimentary spa upgrade.' }],
+          inclusionsSummary: [
+            { icon: 'fas fa-bed', text: '6 Nights Stay' },
+            { icon: 'fas fa-utensils', text: 'Meals Included' },
+            { icon: 'fas fa-car', text: 'Private Transfers' }
+          ]
+        }
       }
     ],
     hotels: [
@@ -92,27 +147,82 @@ export const DESTINATIONS: Destination[] = [
     priceStart: 2100,
     image: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=800&auto=format&fit=crop',
     description: 'Indulge in whitewashed elegance perched above volcanic calderas. Experience the world’s most cinematic golden sunset cliffs.',
-    itineraries: [
+    regionDetails: {
+      weather: '25°C - 30°C (Sunny)',
+      population: '15,500',
+      language: 'Greek',
+      currency: 'Euro (EUR)'
+    },
+    blog: {
+      title: 'Chasing the Golden Hour Over the Aegean',
+      excerpt: 'Why the sunsets of Oia remain the ultimate bucket-list experience for luxury nomads.',
+      fullText: 'There is a specific quality to the light in Santorini that cannot be replicated anywhere else on Earth. When the late afternoon sun hits the whitewashed cubic houses and azure domes of Oia, the entire cliffside seems to glow from within. Luxury here is defined by elevation—private plunge pools hanging precariously over the ancient volcanic caldera, offering unobstructed views of the Aegean Sea. Your days are spent sailing on private catamarans, discovering hidden hot springs, and dining on hyper-local seafood paired with crisp Assyrtiko wines grown in volcanic soil. As the sun dips below the horizon, the island erupts in quiet applause. This is Santorini at its finest: an amphitheater of natural beauty.',
+      author: 'Marina Veles',
+      readTime: '5 min read',
+      image: 'https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?q=80&w=1200&auto=format&fit=crop'
+    },
+    products: [
       {
-        day: 1,
-        title: 'Oia Cliff Walk & Sunset Cocktail',
-        description: 'Arrive at luxury cliff villa. Watch sunsets from private plunge pool with bespoke greek wine.',
-        activities: ['Luxury Cliff Transfer', 'Bespoke Vintage Wine Tasting'],
-        meals: ['Dinner']
-      },
-      {
-        day: 2,
-        title: 'Volcanic Caldera Luxury Catamaran',
-        description: 'Day sailing charter with hot spring swimming and delicious Mediterranean buffet on deck.',
-        activities: ['Catamaran Sailing Tour', 'Hot Spring Snorkeling'],
-        meals: ['Breakfast', 'Lunch', 'Dinner']
-      },
-      {
-        day: 3,
-        title: 'Akrotiri Archaeological Treasures',
-        description: 'Guided tour of the prehistoric Minoan city preserved in volcanic ash.',
-        activities: ['Akrotiri Archeology Explorer', 'Saganaki Masterclass'],
-        meals: ['Breakfast', 'Lunch']
+        id: 'santorini-caldera-escape',
+        name: 'Santorini Caldera VIP Escape',
+        description: {
+          short: 'A 5-day luxury immersion in whitewashed villas and private catamaran sailing.',
+          full: 'Elevate your senses on the rim of an ancient volcano. This 5-day journey features exclusive accommodations in a cliffside cave suite with a private infinity plunge pool. Sail the Aegean on a luxury catamaran, swim in volcanic hot springs, and enjoy curated wine tastings.'
+        },
+        images: [
+          { src: 'https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?q=80&w=1200&auto=format&fit=crop', alt: 'Santorini Sunset' },
+          { src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop', alt: 'Cliff Pool' }
+        ],
+        keyInformation: {
+          duration: '5 Days / 4 Nights',
+          locationsRoute: 'Oia -> Imerovigli -> Akrotiri -> Fira',
+          bestSeason: 'Summer (June - August)',
+          tags: ['Honeymoon', 'Ocean']
+        },
+        tripHighlights: [
+          'Stay in an iconic Oia cave villa with a private heated plunge pool',
+          'Private sunset catamaran cruise with unlimited drinks and BBQ',
+          'Exclusive wine tasting at a historic volcanic vineyard',
+          'VIP table reservations at Oia\'s most sought-after sunset restaurants'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Arrival & Cliffside Views',
+            description: 'Check in to your luxury suite and soak in the breathtaking caldera views.',
+            location: 'Oia',
+            details: ['Private helicopter or VIP car transfer from airport', 'Welcome champagne reception', 'Sunset dinner overlooking the caldera']
+          },
+          {
+            day: 2,
+            title: 'Sailing the Aegean',
+            description: 'A full day out on the water exploring hidden coves and hot springs.',
+            location: 'Aegean Sea',
+            details: ['Board private catamaran', 'Snorkel at the Red and White beaches', 'Swim in the volcanic hot springs', 'Fresh seafood BBQ lunch on board']
+          },
+          {
+            day: 3,
+            title: 'Volcanic Wine & Ancient History',
+            description: 'Discover the unique viticulture of Santorini and its ancient ruins.',
+            location: 'Akrotiri & Megalochori',
+            details: ['Private tour of Akrotiri archaeological site', 'Estate wine tasting of Assyrtiko varietals', 'Free evening in Fira for shopping']
+          }
+        ],
+        inclusionsExclusions: {
+          inclusions: ['4 Nights in a 5-Star Cave Suite', 'Daily Champagne Breakfast', 'Private Catamaran Charter', 'All local transfers via luxury SUV', 'Wine tasting fees'],
+          exclusions: ['International & Domestic Flights', 'Lunches & Dinners not specified', 'Gratuities']
+        },
+        price: {
+          startingFrom: 4100,
+          per: 'Person',
+          disclaimer: '* Rates vary significantly between shoulder and peak season.',
+          offers: [{ code: 'HONEYMOON', description: 'Complimentary romantic room setup and couples massage.' }],
+          inclusionsSummary: [
+            { icon: 'fas fa-home', text: 'Cave Suite Stay' },
+            { icon: 'fas fa-ship', text: 'Private Yacht' },
+            { icon: 'fas fa-wine-glass-alt', text: 'Wine Tasting' }
+          ]
+        }
       }
     ],
     hotels: [
@@ -168,29 +278,21 @@ export const DESTINATIONS: Destination[] = [
     priceStart: 1200,
     image: 'https://images.unsplash.com/photo-1563228913-74b595ed5808?q=80&w=800&auto=format&fit=crop',
     description: 'Listen to premium soothing rain droplets on banana leaves. Wake up on an authentic luxury houseboat cruising emerald waters.',
-    itineraries: [
-      {
-        day: 1,
-        title: 'Floating Houseboat Embarkation',
-        description: 'Boards private premium wooden houseboat in Kumarakom with dedicated personal chef and captain.',
-        activities: ['Houseboat Cruise', 'Live Rain Deck Dining'],
-        meals: ['Lunch', 'Dinner']
-      },
-      {
-        day: 2,
-        title: 'Spice Forest Canopy Trail',
-        description: 'Guided trek through refreshing rain-soaked spice plantations, learning ancient plant medicine.',
-        activities: ['Monsoon Jungle Safari', 'Spice Tasting Session'],
-        meals: ['Breakfast', 'Lunch']
-      },
-      {
-        day: 3,
-        title: 'Munnar Tea Mountain Tea Walk',
-        description: 'Scenic drive to misty terraced estates with authentic Ceylon tea manufacturing tours.',
-        activities: ['Misty Mountain Trek', 'Handcrafted Tea Blending'],
-        meals: ['Breakfast']
-      }
-    ],
+    regionDetails: {
+      weather: '22°C - 28°C (Humid)',
+      population: '34 Million',
+      language: 'Malayalam',
+      currency: 'Indian Rupee (INR)'
+    },
+    blog: {
+      title: 'Monsoon Magic: Life on the Backwaters',
+      excerpt: 'Finding zen in the lush, rain-kissed landscapes of Southern India.',
+      fullText: 'Kerala during the monsoon is a symphony of green. The rain here is not an obstacle; it is the lifeblood of the landscape. Floating on a traditional Kettuvallam houseboat, you become one with the environment. As the heavy droplets drum against the thatched roof, you are served steaming spiced tea and fresh river fish curry. The backwaters of Alleppey, usually buzzing with activity, quiet down to a meditative state. It is an ideal environment to practice Ayurveda, with traditional treatments designed to align the body with the changing seasons. The air is thick with the scent of wet earth and sandalwood—a true escape into nature’s embrace.',
+      author: 'Ananya Rao',
+      readTime: '4 min read',
+      image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=1200&auto=format&fit=crop'
+    },
+    products: [],
     hotels: [
       {
         id: 'palms_houseboat',
@@ -244,29 +346,21 @@ export const DESTINATIONS: Destination[] = [
     priceStart: 2450,
     image: 'https://images.unsplash.com/photo-1502784444187-359ac186c5bb?q=80&w=800&auto=format&fit=crop',
     description: 'Ski down sweeping glaciers, dine on artisan cheese fondue next to roaring logs, and steep in thermal bath waters surrounded by winter snow.',
-    itineraries: [
-      {
-        day: 1,
-        title: 'Alpine Express & Cheese Cabin',
-        description: 'Arrive via glass-dome panoramic Glacier Express. Enjoy luxury cabin check-in with standard hot toddy.',
-        activities: ['Scenic Alpine Train Ride', 'Welcome Fondue Gathering'],
-        meals: ['Dinner']
-      },
-      {
-        day: 2,
-        title: 'Zermatt Ski Adventure or Snowshoes',
-        description: 'Premium lift passes to the high Matterhorn peaks. Enjoy skiing or scenic forest snowshoe trails.',
-        activities: ['Glacier Ski Session', 'Matterhorn Summit Heli-Tour'],
-        meals: ['Breakfast', 'Lunch']
-      },
-      {
-        day: 3,
-        title: 'Outdoor Hot Bath & Thermal Spa',
-        description: 'Steep in natural sulfur hot pools directly under the crisp winter stars and cold mountain peaks.',
-        activities: ['Thermal Bath VIP Access', 'Deep Snow Cabin Relaxation'],
-        meals: ['Breakfast', 'Dinner']
-      }
-    ],
+    regionDetails: {
+      weather: '-5°C - 2°C (Snowy)',
+      population: '8.7 Million',
+      language: 'German, French, Italian',
+      currency: 'Swiss Franc (CHF)'
+    },
+    blog: {
+      title: 'Altitude & Attitude: The Modern Alpine Escape',
+      excerpt: 'Redefining après-ski in the heart of Europe’s most exclusive snow-capped mountains.',
+      fullText: 'The Swiss Alps offer a paradox of extreme adrenaline and supreme comfort. Imagine carving fresh tracks down untouched powder in the morning, only to be whisked away by helicopter to a Michelin-starred dining table at 3,000 meters by noon. The chalets here are marvels of modern engineering, combining rustic timber aesthetics with hyper-modern amenities—think heated infinity pools surrounded by snowbanks and private cinemas. Zermatt and St. Moritz remain the crown jewels, where the shadow of the Matterhorn provides a dramatic backdrop to high-fashion boutiques and intimate fondue lounges. This is where winter sports meet high society.',
+      author: 'Julian Croft',
+      readTime: '6 min read',
+      image: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?q=80&w=1200&auto=format&fit=crop'
+    },
+    products: [],
     hotels: [
       {
         id: 'gstaad_palace',
@@ -320,29 +414,21 @@ export const DESTINATIONS: Destination[] = [
     priceStart: 1650,
     image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=800&auto=format&fit=crop',
     description: 'Discover the pristine majesty of the high-altitude trans-Himalayan desert. Experience winding ancient monastery paths, pristine salt lake waters, and high mountain peaks.',
-    itineraries: [
-      {
-        day: 1,
-        title: 'Leh Acclimatization & Shanti Stupa',
-        description: 'Rest and acclimatize at the altitude. Sunset visit to the white-domed Shanti Stupa.',
-        activities: ['Leh Palace Walk', 'Traditional Hot Ginger Drink Session'],
-        meals: ['Dinner']
-      },
-      {
-        day: 2,
-        title: 'Nubra Valley via Khardung La',
-        description: 'Drive across the world’s highest motorable pass. Explore cold desert sand dunes on double-humped camels.',
-        activities: ['Khardung La Pass Stunt Photo', 'Bactrian Camel Ride'],
-        meals: ['Breakfast', 'Lunch']
-      },
-      {
-        day: 3,
-        title: 'Sapphire Waters of Pangong Lake',
-        description: 'Drive through Chang La Pass to reach the end-to-end blue saline lake on the international border.',
-        activities: ['Lake-shore Sunset Walk', 'Lakeside Cozy Campfire'],
-        meals: ['Breakfast', 'Dinner']
-      }
-    ],
+    regionDetails: {
+      weather: '10°C - 20°C (Sunny & Cool)',
+      population: '274,000',
+      language: 'Ladakhi, Hindi, English',
+      currency: 'Indian Rupee (INR)'
+    },
+    blog: {
+      title: 'Silence in the High Himalayas',
+      excerpt: 'Finding spiritual clarity amidst the stark beauty of the cold desert.',
+      fullText: 'Ladakh is not a destination; it is an elevation of the spirit. At 3,500 meters above sea level, the air is thin, crisp, and pure. The landscape is a stark, moon-like desert, interrupted only by the striking emerald green of the Indus River valleys and the impossibly blue waters of Pangong Tso. Luxury here is defined by exclusivity and connection to the ancient Tibetan Buddhist culture. You stay in premium eco-lodges or luxury glamping tents facing snow-capped peaks. Your days are spent visiting centuries-old monasteries clinging to cliff sides, where the deep hum of chanting monks resonates in your chest. It is a place that forces you to slow down, breathe deeply, and appreciate the vastness of the world.',
+      author: 'Tenzin Norgay',
+      readTime: '5 min read',
+      image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=1200&auto=format&fit=crop'
+    },
+    products: [],
     hotels: [
       {
         id: 'himalayan_retreat',
@@ -377,29 +463,7 @@ export const DESTINATIONS: Destination[] = [
     priceStart: 2200,
     image: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=800&auto=format&fit=crop',
     description: 'Get lost in a brilliant fusion of high-neon skyscrapers, futuristic galactic lounges, and quiet hidden woodland temples.',
-    itineraries: [
-      {
-        day: 1,
-        title: 'Shibuya Neon Crossing & Golden Gai Speakeasy',
-        description: 'Behold the dynamic rhythm of Shibuya crossing. Sip craft gin in hidden retro alleys.',
-        activities: ['Shibuya Sky Panoramic View', 'Golden Gai Night Safari'],
-        meals: ['Dinner']
-      },
-      {
-        day: 2,
-        title: 'Digital Art Museum & Teamlab Planetary Trails',
-        description: 'Walk through infinite matrix crystals and projection of falling orchids.',
-        activities: ['TeamLab Crystals Access', 'Meiji Forest Shrine walk'],
-        meals: ['Breakfast', 'Lunch']
-      },
-      {
-        day: 3,
-        title: 'VIP Ginza Culinary Masters',
-        description: 'Indulge in certified A5 Kobe Wagyu charcoal grilling paired with luxury hot sake.',
-        activities: ['Ginza Wagyu Tasting', 'Midnight Tsukimi tea ritual'],
-        meals: ['Breakfast', 'Dinner']
-      }
-    ],
+    products: [],
     hotels: [
       {
         id: 'aman_tokyo',
@@ -423,6 +487,98 @@ export const DESTINATIONS: Destination[] = [
         intensity: 'Easy'
       }
     ]
+  },
+  {
+    id: 'japan',
+    name: 'Discover Japan',
+    tagline: 'A seamless journey through neon futures and ancient traditions',
+    country: 'Japan',
+    seasonRecommendation: 'spring',
+    rating: 4.95,
+    priceStart: 4500,
+    image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?q=80&w=800&auto=format&fit=crop',
+    description: 'Experience the contrasts of Japan in an immersive journey that spans the ultra-modern pulse of Tokyo, the serene majestic shadow of Mt. Fuji, and the timeless temples of Kyoto.',
+    regionDetails: {
+      weather: '10°C - 22°C (Varies by region)',
+      population: '125 Million',
+      language: 'Japanese',
+      currency: 'Yen (JPY)'
+    },
+    blog: {
+      title: 'The Art of the Japanese Bullet Train',
+      excerpt: 'How the Shinkansen became a symbol of Japanese precision and elegance.',
+      fullText: 'Traveling through Japan is an art form in itself. The Shinkansen, or bullet train, offers a window into the Japanese ethos of punctuality, respect, and technological marvel. Watching Mt. Fuji glide by at 300 km/h while enjoying an immaculate bento box is an experience that bridges the gap between hyper-modern efficiency and deep-rooted tradition.',
+      author: 'Hiroshi Tanaka',
+      readTime: '3 min read',
+      image: 'https://images.unsplash.com/photo-1542051812871-757505801529?q=80&w=1200&auto=format&fit=crop'
+    },
+    products: [
+      {
+        id: 'japan-grand-tour',
+        name: 'The Ultimate Japan Discovery',
+        description: {
+          short: 'A 10-day luxury rail journey connecting Tokyo, Mt. Fuji, and Kyoto.',
+          full: 'Embark on the definitive Japanese experience. This 10-day itinerary combines the neon-drenched culinary scenes of Tokyo, a restorative hot-spring retreat at the base of Mt. Fuji, and the spiritual tranquility of Kyoto\'s ancient shrines. Travel effortlessly via first-class Shinkansen, stay in premium 5-star properties, and enjoy private guided access to UNESCO World Heritage sites.'
+        },
+        images: [
+          { src: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1200&auto=format&fit=crop', alt: 'Kyoto Temple' },
+          { src: 'https://images.unsplash.com/photo-1542051812871-757505801529?q=80&w=1200&auto=format&fit=crop', alt: 'Tokyo Neon' },
+          { src: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?q=80&w=1200&auto=format&fit=crop', alt: 'Mt Fuji' }
+        ],
+        keyInformation: {
+          duration: '10 Days / 9 Nights',
+          locationsRoute: 'Tokyo -> Hakone (Mt. Fuji) -> Kyoto -> Osaka',
+          bestSeason: 'Spring or Autumn',
+          tags: ['Multi-City', 'First-Class Rail', 'Cultural']
+        },
+        tripHighlights: [
+          'First-Class Green Car Shinkansen passes included',
+          'Private sushi masterclass in Tokyo’s Toyosu market',
+          'Overnight stay in a luxury Hakone Ryokan with a private open-air bath facing Mt. Fuji',
+          'VIP access to the Arashiyama Bamboo Grove before public hours'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Welcome to Tokyo',
+            description: 'Arrive in the hyper-modern capital. Private transfer to your luxury suite overlooking the Imperial Palace.',
+            location: 'Tokyo',
+            details: ['VIP Airport Meet & Greet', 'Check-in at Aman Tokyo', 'Welcome Kaiseki Dinner in Ginza']
+          },
+          {
+            day: 3,
+            title: 'The Shadows of Mt. Fuji',
+            description: 'Board the Romancecar to Hakone. Experience traditional omotenashi hospitality.',
+            location: 'Hakone',
+            details: ['Lake Ashi Private Cruise', 'Soak in private natural hot springs', 'Multi-course traditional dinner']
+          },
+          {
+            day: 6,
+            title: 'Kyoto\'s Timeless Heritage',
+            description: 'Travel by bullet train to Kyoto. Wander through the vermillion gates of Fushimi Inari.',
+            location: 'Kyoto',
+            details: ['Fushimi Inari guided hike', 'Traditional tea ceremony in Gion', 'Stay in a historic ryokan']
+          }
+        ],
+        inclusionsExclusions: {
+          inclusions: ['9 Nights 5-Star Accommodations', 'First-Class Shinkansen Rail Pass', 'Private English-speaking guides', 'All domestic transfers and luggage forwarding', 'Daily breakfast and 5 special dinners'],
+          exclusions: ['International Flights', 'Travel Insurance', 'Personal shopping expenses']
+        },
+        price: {
+          startingFrom: 6800,
+          per: 'Person',
+          disclaimer: '* Prices vary during peak cherry blossom season (Mar-Apr).',
+          offers: [{ code: 'JAPANRAIL', description: 'Free upgrade to VIP luggage forwarding service between cities.' }],
+          inclusionsSummary: [
+            { icon: 'fas fa-train', text: 'Rail Pass Included' },
+            { icon: 'fas fa-bed', text: '9 Nights Luxury' },
+            { icon: 'fas fa-utensils', text: 'Curated Dining' }
+          ]
+        }
+      }
+    ],
+    hotels: [],
+    activities: []
   }
 ];
 
@@ -548,3 +704,88 @@ export const REVENUE_METRICS: OperationalMetric[] = [
   { date: 'Apr 2026', revenue: 310000, bookingsCount: 145, liveGuests: 48 },
   { date: 'May 2026 (Live)', revenue: 382400, bookingsCount: 178, liveGuests: 64 }
 ];
+
+
+// Added from App.tsx
+export const PROMOTIONS = [
+  {
+    season: 'spring',
+    badge: 'Blossom Special',
+    title: 'Kyoto Sanctuary Sakura Tea Event',
+    description: 'Complimentary Kaiseki Banquets and private tea ceremonies added to all spring Kyoto bookings.',
+    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800&auto=format&fit=crop',
+    tagline: '🌸 SAKURA EVENT UPGRADE',
+    destinationId: 'kyoto'
+  },
+  {
+    season: 'summer',
+    badge: 'High Altitude Support',
+    title: 'Nubra Valley Oxygen Suite upgrades',
+    description: 'Ladakh expeditions upgraded with elite oxygen chambers and personal mountain medical care guides.',
+    image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=800&auto=format&fit=crop',
+    tagline: '☀️ HIGH PASS SAFETY INSURANCE',
+    destinationId: 'ladakh'
+  },
+  {
+    season: 'monsoon',
+    badge: 'Rainforest Healing',
+    title: 'Kerala Abhyanga & Shirodhara Special',
+    description: 'Bespoke ayurvedic therapies and romantic candlelit dinner cruises on our signature houseboats.',
+    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=800&auto=format&fit=crop',
+    tagline: '🌧️ MONSOON HEALING UPGRADES',
+    destinationId: 'kerala'
+  },
+  {
+    season: 'winter',
+    badge: 'Ski Privilege',
+    title: 'Swiss Chalet Matterhorn Helicopter Flight',
+    description: 'Free peak-skimming mountain helicopter scenic flights for all winter ski chalet bookings.',
+    image: 'https://images.unsplash.com/photo-1502784444187-359ac186c5bb?q=80&w=800&auto=format&fit=crop',
+    tagline: '❄️ ALPS SKYLINE ADVENTURE',
+    destinationId: 'swiss'
+  }
+];
+
+export const SEASONAL_THEMES_DATA = [
+  {
+    id: 'spring',
+    name: 'Cherry Blossom Resonance',
+    label: '💮 Spring',
+    desc: 'Soft pink sakura bloom beds, outdoor hot baths, and fresh green tea.',
+    colorClass: 'text-pink-400',
+    borderColor: 'border-pink-500/20',
+    glowColor: 'shadow-pink-500/20',
+    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=400&auto=format&fit=crop'
+  },
+  {
+    id: 'summer',
+    name: 'Solstice Sunbursts',
+    label: '☀️ Summer',
+    desc: 'Breathtaking blue water bays, caldera cliffs, and camel treks.',
+    colorClass: 'text-accent',
+    borderColor: 'border-accent/20',
+    glowColor: 'shadow-accent/20',
+    image: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=400&auto=format&fit=crop'
+  },
+  {
+    id: 'monsoon',
+    name: 'Quiet Rain Healing',
+    label: '🌧️ Monsoon',
+    desc: 'Ayurvedic stone massage, river houseboats, and rain cascades.',
+    colorClass: 'text-teal-400',
+    borderColor: 'border-teal-500/20',
+    glowColor: 'shadow-teal-500/20',
+    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=400&auto=format&fit=crop'
+  },
+  {
+    id: 'winter',
+    name: 'Glacial Firewood Cozy',
+    label: '❄️ Winter',
+    desc: 'Scenic snowbound train rides, thermal pools, and fondues.',
+    colorClass: 'text-blue-400',
+    borderColor: 'border-blue-600/20',
+    glowColor: 'shadow-blue-600/20',
+    image: 'https://images.unsplash.com/photo-1502784444187-359ac186c5bb?q=80&w=400&auto=format&fit=crop'
+  }
+];
+
