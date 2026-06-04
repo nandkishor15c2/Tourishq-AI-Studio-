@@ -315,8 +315,7 @@ export const ProductDetailPage = (props: any) => {
 
             {/* FLOATING SECTION NAVIGATOR */}
             <div 
-              style={{ bottom: '150px' }}
-              className={`fixed lg:bottom-6 right-3 sm:right-6 lg:right-10 z-50 transition-all duration-300 m-0 ${showMobilePriceBox ? 'opacity-0 translate-y-4 pointer-events-none' : 'opacity-100 translate-y-0'}`}
+              className={`fixed bottom-36 sm:bottom-40 lg:bottom-6 right-3 sm:right-6 lg:right-10 z-50 transition-all duration-300 m-0 ${showMobilePriceBox ? 'opacity-0 translate-y-4 pointer-events-none' : 'opacity-100 translate-y-0'}`}
             >
               <AnimatePresence>
                 {showNavDropdown && (
