@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Compass, MapPin, Calendar, Users, Sliders, DollarSign, Phone, HelpCircle, Clock, Sparkles, Award, ChevronRight, ShieldCheck, Star, User, LogOut, Map, ClipboardList, Flame, ArrowRight, Heart, Send, MessageCircle, LayoutDashboard, Play, Pause, Sun, CloudRain, Snowflake, ChevronUp, CheckCircle, XCircle, Tag, Thermometer, Droplets, Wind, Shield, CheckCircle2, ChevronDown, HeartPulse, ShieldAlert, PlayCircle, Navigation, Search, Activity, Info } from 'lucide-react';
+import { Compass, MapPin, Calendar, Users, Sliders, DollarSign, Phone, HelpCircle, Clock, Sparkles, Award, ChevronRight, ShieldCheck, Star, User, LogOut, Map, ClipboardList, Flame, ArrowRight, Heart, Send, MessageCircle, LayoutDashboard, Play, Pause, Sun, CloudRain, Snowflake, ChevronUp, CheckCircle, XCircle, Tag, Thermometer, Droplets, Wind, Shield, CheckCircle2, ChevronDown, HeartPulse, ShieldAlert, PlayCircle, Navigation, Search, Activity, Info, Bed, Utensils, Car } from 'lucide-react';
 import { SEASONAL_THEMES_DATA, PROMOTIONS, DESTINATIONS } from '../data';
 import { AuthContainer } from '../components/AuthContainer';
 import { ProductCard } from '../components/ProductCard';
@@ -147,31 +147,63 @@ export const ProductDetailPage = (props: any) => {
                     {selectedProduct.itinerary.map((day) => {
                       const isOpen = expandedDay === day.day;
                       return (
-                        <div key={day.day} className="bg-zinc-900/30 border border-white/5 rounded-2xl overflow-hidden hover:bg-zinc-900/50 transition-colors">
+                        <div key={day.day} className="bg-[#1a1a1a] border border-white/5 rounded-2xl overflow-hidden shadow-lg transition-all">
                           <button 
                             onClick={() => setExpandedDay(isOpen ? null : day.day)}
-                            className="w-full text-left p-5 flex justify-between items-start"
+                            className="w-full text-left relative flex items-stretch group min-h-[96px] sm:min-h-[110px]"
                           >
-                            <div>
-                              <span className={`text-[10px] font-bold font-mono tracking-widest uppercase mb-1 block ${currentTheme.accent}`}>Day {day.day}</span>
-                              <h4 className="text-lg font-bold text-white">{day.title}</h4>
+                            {/* Full width Image Background with single smooth gradient */}
+                            <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+                              <img 
+                                src={selectedProduct.images[(day.day - 1) % selectedProduct.images.length]?.src || selectedProduct.images[0].src} 
+                                alt={day.title} 
+                                className="w-full h-full object-cover object-right opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] from-[30%] via-[#1a1a1a]/80 via-[60%] to-transparent" />
                             </div>
-                            <div className="flex flex-col items-end gap-2">
-                              <span className="text-xs text-amber-500 font-mono flex items-center gap-1">
-                                <MapPin size={12} /> {day.location}
-                              </span>
-                              <ChevronUp size={16} className={`text-zinc-500 transition-transform duration-300 ${isOpen ? 'rotate-0' : 'rotate-180'}`} />
+                            
+                            {/* Content on left */}
+                            <div className="relative z-10 p-4 sm:p-5 flex flex-col justify-center w-full h-full">
+                               <h4 className="text-[15px] sm:text-lg font-bold text-white mb-3 pr-10">{day.title}</h4>
+                               
+                               <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                                 {/* Orange bordered badge - fully rounded */}
+                                 <span className="px-2 sm:px-2.5 py-0.5 rounded-full border border-orange-600/80 text-orange-500 text-[10px] sm:text-[11px] font-bold tracking-widest uppercase bg-[#1a1a1a]/50 backdrop-blur-sm">
+                                   DAY {day.day}
+                                 </span>
+                                 
+                                 {/* Green icon badge - fully rounded */}
+                                 <span className="px-2 sm:px-2.5 py-0.5 rounded-full border border-emerald-600/80 text-emerald-400 text-[10px] sm:text-[11px] font-bold flex items-center gap-1 bg-[#1a1a1a]/50 backdrop-blur-sm">
+                                   <MapPin size={10} className="text-emerald-500" /> {day.location}
+                                 </span>
+                                 
+                                 {/* White text */}
+                                 {day.details && (
+                                   <span className="text-[10px] sm:text-[12px] font-bold text-white tracking-wide">
+                                     {(Array.isArray(day.details) ? day.details : [day.details]).length} Activities
+                                   </span>
+                                 )}
+                                 
+                                 {/* White text 2 */}
+                                 <span className="text-[10px] sm:text-[12px] font-bold text-white tracking-wide">
+                                   Guided
+                                 </span>
+                               </div>
+                               
+                               <div className="absolute top-1/2 -translate-y-1/2 right-4 sm:right-5 z-20 bg-black/40 p-1.5 rounded-full backdrop-blur-md">
+                                 <ChevronUp size={16} className={`text-white transition-transform duration-300 ${isOpen ? 'rotate-0' : 'rotate-180'}`} />
+                               </div>
                             </div>
                           </button>
                           
-                          <div className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                            <div className="px-5 pb-5">
-                              <p className="text-sm text-zinc-400 mb-4">{day.description}</p>
+                          <div className={`transition-all duration-500 ease-in-out bg-[#1a1a1a] ${isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                            <div className="px-5 pb-5 pt-2 border-t border-white/10 relative z-10">
+                              <p className="text-sm text-zinc-300 mb-4 leading-relaxed">{day.description}</p>
                               {day.details && (
-                                <ul className="space-y-1.5">
+                                <ul className="space-y-2">
                                   {(Array.isArray(day.details) ? day.details : [day.details]).map((det, i) => (
-                                    <li key={i} className="text-xs text-zinc-500 flex items-start gap-2">
-                                      <span className="text-zinc-700 mt-0.5">●</span> {det}
+                                    <li key={i} className="text-[13px] text-zinc-400 flex items-start gap-3">
+                                      <span className="text-emerald-500/50 mt-0.5 text-[10px]">♦</span> {det}
                                     </li>
                                   ))}
                                 </ul>
@@ -220,52 +252,89 @@ export const ProductDetailPage = (props: any) => {
                 )}
 
                 <div className={`
-                  fixed inset-x-0 bottom-0 z-50 rounded-t-[32px] p-6 pb-24 lg:pb-8 transition-transform duration-300 shadow-[0_-10px_40px_rgba(0,0,0,0.7)] max-h-[85vh] overflow-y-auto
-                  lg:sticky lg:top-6 lg:inset-auto lg:rounded-[32px] lg:p-8 lg:shadow-2xl lg:translate-y-0 lg:max-h-none lg:overflow-visible
-                  bg-gradient-to-b from-zinc-900/95 to-zinc-950/95 lg:from-zinc-900/80 lg:to-zinc-950/80 backdrop-blur-xl border border-white/10 text-left
+                  fixed inset-x-0 bottom-0 z-50 rounded-t-[32px] p-5 pb-20 lg:pb-6 transition-transform duration-300 shadow-[0_-10px_40px_rgba(0,0,0,0.7)] max-h-[85vh] overflow-y-auto
+                  lg:sticky lg:top-6 lg:inset-auto lg:rounded-[24px] lg:p-6 lg:shadow-2xl lg:translate-y-0 lg:max-h-none lg:overflow-visible
+                  bg-[#121315] border border-white/10 text-left
                   ${showMobilePriceBox ? 'translate-y-0' : 'translate-y-full'} 
                 `}>
-                  <button onClick={() => setShowMobilePriceBox(false)} className="absolute top-6 right-6 text-zinc-400 lg:hidden flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10">✕</button>
-                  <h3 className="text-xl font-bold text-white mb-2">Book This Trip</h3>
-                  <div className={`w-12 h-1 rounded-full mb-6 ${currentTheme.accentBg}`} />
+                  {/* Subtle Top Glow */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 ${currentTheme.accentBg} opacity-50 shadow-[0_0_20px_var(--color-accent)]`} />
                   
-                  <div className="mb-6">
-                    <p className="text-[10px] text-amber-400 uppercase font-mono tracking-widest font-bold mb-1">Starting From</p>
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-3xl font-black text-white">${selectedProduct.price.startingFrom}</span>
-                      <span className="text-xs text-zinc-500 font-mono">/ {selectedProduct.price.per}</span>
+                  <button onClick={() => setShowMobilePriceBox(false)} className="absolute top-5 right-5 text-zinc-400 lg:hidden flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">✕</button>
+                  
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <h3 className="text-xl font-bold text-white">Book This Trip</h3>
+                    <span className="bg-amber-500/20 text-amber-400 text-[9px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1 border border-amber-500/30">
+                      <Flame size={10} /> HOT
+                    </span>
+                  </div>
+                  
+                  <div className={`w-10 h-1 rounded-full mb-4 ${currentTheme.accentBg}`} />
+                  
+                  <div className="mb-5 bg-black/40 rounded-xl p-4 border border-white/5 relative overflow-hidden group hover:border-white/10 transition-colors">
+                    <p className="text-[9px] text-zinc-400 uppercase font-mono tracking-widest font-bold mb-1">Starting From</p>
+                    <div className="flex items-baseline gap-1 mb-2.5">
+                      <span className="text-3xl font-black text-white group-hover:scale-105 origin-left transition-transform">${selectedProduct.price.startingFrom}</span>
+                      <span className="text-[11px] text-zinc-500 font-mono">/ {selectedProduct.price.per}</span>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-1.5">
+                      <span className="text-[9px] font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-1.5 py-0.5 rounded-md flex items-center gap-1">
+                        <ShieldCheck size={10} /> Instant Confirmation
+                      </span>
+                      <span className="text-[9px] font-bold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-1.5 py-0.5 rounded-md flex items-center gap-1">
+                        <Clock size={10} /> Free Cancellation
+                      </span>
                     </div>
                   </div>
 
                   {selectedProduct.price.inclusionsSummary && (
-                    <div className="mb-6">
-                      <p className="text-[10px] text-zinc-500 uppercase font-mono tracking-widest font-bold mb-3">Package Includes</p>
-                      <div className="grid grid-cols-3 gap-2">
-                        {selectedProduct.price.inclusionsSummary.map((sum, i) => (
-                          <div key={i} className="bg-white/5 rounded-xl p-3 flex flex-col items-center justify-center text-center gap-2 border border-white/5">
-                            <i className={`${sum.icon} ${currentTheme.accent} text-lg`}></i>
-                            <span className="text-[9px] text-zinc-400 font-bold leading-tight">{sum.text}</span>
-                          </div>
-                        ))}
+                    <div className="mb-5">
+                      <p className="text-[9px] text-zinc-500 uppercase font-mono tracking-widest font-bold mb-2">Package Highlights</p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {selectedProduct.price.inclusionsSummary.map((sum: any, i: number) => {
+                          const getIcon = (text: string) => {
+                            if (text.toLowerCase().includes('stay') || text.toLowerCase().includes('night')) return <Bed size={14} />;
+                            if (text.toLowerCase().includes('meal') || text.toLowerCase().includes('dining')) return <Utensils size={14} />;
+                            if (text.toLowerCase().includes('transfer') || text.toLowerCase().includes('flight') || text.toLowerCase().includes('transport')) return <Car size={14} />;
+                            return <CheckCircle2 size={14} />;
+                          };
+                          
+                          return (
+                            <div key={i} className="group bg-white/5 hover:bg-white/10 rounded-lg p-2 flex items-center gap-2 border border-white/5 hover:border-white/20 transition-all cursor-default">
+                              <div className={`p-1.5 rounded-md bg-black/50 ${currentTheme.accent} group-hover:scale-110 transition-transform shadow-inner border border-white/5`}>
+                                {getIcon(sum.text)}
+                              </div>
+                              <div className="flex flex-col justify-center">
+                                <span className="text-[11px] font-bold text-white leading-tight">{sum.text}</span>
+                              </div>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   )}
 
                   {selectedProduct.price.offers && selectedProduct.price.offers.length > 0 && (
-                    <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-xl mb-6">
-                      {selectedProduct.price.offers.map((offer, i) => (
-                        <div key={i} className="flex items-start gap-2 mb-2 last:mb-0">
-                          <Tag className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                    <div className="bg-amber-500/10 border border-amber-500/20 p-3 rounded-xl mb-4 relative overflow-hidden group hover:bg-amber-500/15 transition-colors cursor-default">
+                      <div className="absolute -top-2 -right-2 p-2 opacity-10 group-hover:opacity-20 group-hover:rotate-12 group-hover:scale-110 transition-all duration-500">
+                        <Sparkles size={48} className="text-amber-500" />
+                      </div>
+                      {selectedProduct.price.offers.map((offer: any, i: number) => (
+                        <div key={i} className="relative z-10 flex items-start gap-2 mb-2 last:mb-0">
+                          <div className="bg-amber-500/20 p-1 rounded border border-amber-500/30">
+                            <Tag className="w-3 h-3 text-amber-400 shrink-0" />
+                          </div>
                           <div>
-                            <span className="text-[10px] font-bold text-blue-300 bg-blue-500/20 px-1.5 py-0.5 rounded mr-2">{offer.code}</span>
-                            <span className="text-[11px] text-zinc-300 leading-tight">{offer.description}</span>
+                            <span className="inline-block text-[9px] font-bold text-amber-900 bg-amber-400 px-1.5 py-0.5 rounded mb-0.5 shadow-sm uppercase tracking-wider">{offer.code}</span>
+                            <p className="text-[10px] text-zinc-300 leading-snug pr-4">{offer.description}</p>
                           </div>
                         </div>
                       ))}
                     </div>
                   )}
 
-                  <p className="text-[10px] text-zinc-500 italic mb-6">
+                  <p className="text-[9px] text-zinc-500 italic mb-4 text-center">
                     {selectedProduct.price.disclaimer}
                   </p>
 
@@ -274,9 +343,12 @@ export const ProductDetailPage = (props: any) => {
                       if (!currentUser) setShowAuthModal(true);
                       else setBookingDest(selectedDest);
                     }}
-                    className={`w-full py-4 rounded-xl font-bold text-sm text-black shadow-lg cursor-pointer hover:scale-105 active:scale-95 transition-all ${currentTheme.accentBg}`}
+                    className={`group relative w-full overflow-hidden py-3 rounded-xl font-bold text-sm text-black shadow-lg cursor-pointer hover:scale-[1.02] active:scale-95 transition-all ${currentTheme.accentBg}`}
                   >
-                    Enquire Now
+                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent w-1/2 skew-x-12" />
+                    <div className="relative z-10 flex items-center justify-center gap-2">
+                      Enquire Now <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </button>
                 </div>
               </div>
