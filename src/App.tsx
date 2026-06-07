@@ -44,14 +44,10 @@ import {
 
 import { SeasonType, Destination, Booking, SupportTicket, User as UserType, Product } from './types';
 import {
-  PROMOTIONS,
-  SEASONAL_THEMES_DATA,
-  DESTINATIONS,
   DEFAULT_BOOKINGS,
   DEFAULT_TICKETS,
   REVENUE_METRICS,
-  MOCK_REVIEWS,
-  LIVE_OPERATIONS_STEPS
+  MOCK_REVIEWS
 } from './data';
 
 import { SeasonalOverlay } from './components/SeasonalOverlay';
@@ -143,6 +139,11 @@ const getPackingItemsForDestination = (destId: string): string[] => {
 
 export default function App() {
   // --- 1. Persistent State Initialization ---
+  const [isLoading, setIsLoading] = useState(true);
+  const [promotions, setPromotions] = useState<any[]>([]);
+  const [seasonalThemes, setSeasonalThemes] = useState<any[]>([]);
+  const [liveOperationsSteps, setLiveOperationsSteps] = useState<any[]>([]);
+
   const [season, setSeason] = useState<SeasonType>(() => {
     const saved = localStorage.getItem(STORAGE_THEME_KEY);
     return (saved as SeasonType) || 'spring';
@@ -157,17 +158,29 @@ export default function App() {
     const saved = localStorage.getItem(STORAGE_DESTS_KEY);
     if (saved) {
       try {
-        const parsed = JSON.parse(saved) as Destination[];
-        // If it lacks any of the hardcoded destinations, discard cache and use DESTINATIONS from data.ts
-        if (DESTINATIONS.every(dest => parsed.some(p => p.id === dest.id))) {
-          return parsed;
-        }
+        return JSON.parse(saved) as Destination[];
       } catch (e) {
         // Fall through
       }
     }
-    return DESTINATIONS;
+    return [];
   });
+
+  useEffect(() => {
+    fetch('/data.json')
+      .then(res => res.json())
+      .then(data => {
+        setPromotions(data.promotions || []);
+        setSeasonalThemes(data.seasonalThemes || []);
+        setLiveOperationsSteps(data.liveOperationsSteps || []);
+        setDestinations(prev => prev.length > 0 ? prev : (data.destinations || []));
+        setIsLoading(false);
+      })
+      .catch(err => {
+        console.error('Error fetching data.json:', err);
+        setIsLoading(false);
+      });
+  }, []);
 
   const [bookings, setBookings] = useState<Booking[]>(() => {
     const saved = localStorage.getItem(STORAGE_BOOKINGS_KEY);
@@ -248,8 +261,10 @@ export default function App() {
 
   // Search filter terms for destinations view
   const [searchQuery, setSearchQuery] = useState('');
-  const [priceRange, setPriceRange] = useState<number>(3000);
+  const [priceRange, setPriceRange] = useState<number>(5000);
   const [filterSeason, setFilterSeason] = useState<string>('all');
+  const [filterTheme, setFilterTheme] = useState<string>('all');
+  const [filterMaxDays, setFilterMaxDays] = useState<number>(30);
 
   // Interactive Live Countdown State (Calculated for Kyoto Upcoming Booking)
   const [timeRemaining, setTimeRemaining] = useState({ days: 16, hours: 2, minutes: 45, seconds: 59 });
@@ -261,21 +276,25 @@ export default function App() {
 
   // Autoplay Seasonal Promotion rotation (every 4 seconds) - independent of theme
   const [autoplayActive, setAutoplayActive] = useState(true);
-  const [activePromoIndex, setActivePromoIndex] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_THEME_KEY);
-    const initialSeason = (saved as SeasonType) || 'spring';
-    const idx = PROMOTIONS.findIndex(p => p.season === initialSeason);
-    return idx !== -1 ? idx : 0;
-  });
+  const [activePromoIndex, setActivePromoIndex] = useState(0);
 
   useEffect(() => {
-    if (!autoplayActive) return;
+    if (promotions.length > 0) {
+      const saved = localStorage.getItem(STORAGE_THEME_KEY);
+      const initialSeason = (saved as SeasonType) || 'spring';
+      const idx = promotions.findIndex((p: any) => p.season === initialSeason);
+      setActivePromoIndex(idx !== -1 ? idx : 0);
+    }
+  }, [promotions]);
+
+  useEffect(() => {
+    if (!autoplayActive || promotions.length === 0) return;
     const timer = setTimeout(() => {
-      setActivePromoIndex((prev) => (prev + 1) % PROMOTIONS.length);
+      setActivePromoIndex((prev) => (prev + 1) % promotions.length);
     }, 4000);
 
     return () => clearTimeout(timer);
-  }, [activePromoIndex, autoplayActive]);
+  }, [activePromoIndex, autoplayActive, promotions]);
 
   useEffect(() => {
     if (currentUser) {
@@ -502,17 +521,18 @@ export default function App() {
 
   // Admin tweaking premium markup multiplier ratios
   const handleTweakInventorySurge = (destId: string, tweakPercent: number) => {
-    setDestinations(prev =>
-      prev.map(d => {
+    setDestinations(prev => {
+      const original = prev.find(d => d.id === destId);
+      if (!original) return prev;
+      return prev.map(d => {
         if (d.id === destId) {
-          // Adjust price base dynamically
-          const computedBase = DESTINATIONS.find(baseD => baseD.id === destId)!.priceStart;
+          const computedBase = original.priceStart;
           const finalPrice = Math.round(computedBase * (1 + tweakPercent / 100));
           return { ...d, priceStart: finalPrice };
         }
         return d;
-      })
-    );
+      });
+    });
   };
 
   // Guest logging in or signing up
@@ -552,11 +572,21 @@ export default function App() {
     const matchesPrice = dest.priceStart <= priceRange;
     const matchesSeason = filterSeason === 'all' || dest.seasonRecommendation === filterSeason;
 
-    return matchesSearch && matchesPrice && matchesSeason;
+    const matchesTheme = filterTheme === 'all' || (dest.products && dest.products.some(p => p.keyInformation.tags.some(tag => tag.toLowerCase() === filterTheme.toLowerCase())));
+    const matchesDuration = dest.products && dest.products.some(p => {
+      const daysMatch = p.keyInformation.duration.match(/(\d+)\s*Days/i);
+      if (daysMatch && daysMatch[1]) {
+        return parseInt(daysMatch[1]) <= filterMaxDays;
+      }
+      return true;
+    });
+
+    return matchesSearch && matchesPrice && matchesSeason && matchesTheme && matchesDuration;
   });
 
   const appState = {
     season, setSeason,
+    promotions, seasonalThemes, liveOperationsSteps,
     currentUser, setCurrentUser,
     destinations, setDestinations,
     bookings, setBookings,
@@ -579,6 +609,8 @@ export default function App() {
     searchQuery, setSearchQuery,
     priceRange, setPriceRange,
     filterSeason, setFilterSeason,
+    filterTheme, setFilterTheme,
+    filterMaxDays, setFilterMaxDays,
     timeRemaining, setTimeRemaining,
     autoplayActive, setAutoplayActive,
     activePromoIndex, setActivePromoIndex,
@@ -588,6 +620,17 @@ export default function App() {
     handleUserLogin, handleLogout, handlePostReview,
     filteredDestinations
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center text-white font-sans">
+        <div className="flex flex-col items-center gap-4">
+          <Compass className="w-12 h-12 text-amber-500 animate-spin" />
+          <p className="text-sm font-mono tracking-widest text-zinc-400 uppercase">Loading Environment...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans overflow-x-clip relative">
@@ -601,11 +644,11 @@ export default function App() {
       {/* --- SLEEK FLOATING BRAND LOGO BAR --- */}
       <header className="py-2 px-6 relative z-50 select-none bg-transparent">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center cursor-pointer" onClick={() => { navigate('/'); setSelectedDest(null); }}>
+          <div className="flex items-center cursor-pointer" onClick={() => navigate('/')}>
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               viewBox="0 0 520 125" 
-              className="h-5 sm:h-5.5 md:h-6 w-auto text-white select-none pointer-events-none transition-all"
+              className="h-8 sm:h-10 md:h-12 w-auto text-white select-none pointer-events-none transition-all"
               fill="currentColor"
             >
               {/* Left Arch of T */}

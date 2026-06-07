@@ -22,6 +22,8 @@ export interface ItineraryDay {
   meals?: string[];
   location?: string;
   details?: string | string[]; // support the array format from reference repo
+  hotel?: { name: string; rating: number; photo: string };
+  activityCards?: { name: string; photo: string; type?: string }[];
 }
 
 export interface ProductKeyInfo {

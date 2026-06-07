@@ -1,26 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { SeasonType } from '../types';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Compass, MapPin, Calendar, Users, Sliders, DollarSign, Phone, HelpCircle, Clock, Sparkles, Award, ChevronRight, ShieldCheck, Star, User, LogOut, Map, ClipboardList, Flame, ArrowRight, Heart, Send, MessageCircle, LayoutDashboard, Play, Pause, Sun, CloudRain, Snowflake, ChevronUp, CheckCircle, XCircle, Tag, Thermometer, Droplets, Wind, Shield, CheckCircle2, ChevronDown, HeartPulse, ShieldAlert, PlayCircle, Navigation, Search, Activity, Info } from 'lucide-react';
-import { SEASONAL_THEMES_DATA, PROMOTIONS, DESTINATIONS } from '../data';
+
 import { AuthContainer } from '../components/AuthContainer';
 import { ProductCard } from '../components/ProductCard';
+import { DestinationCard } from '../components/DestinationCard';
 import { SplitCarousel } from '../components/SplitCarousel';
 import { ArchHero } from '../components/ArchHero';
 import { SupportTicketSystem } from '../components/SupportTicketSystem';
 import { InternalAdminDashboard } from '../components/InternalAdminDashboard';
 
 export const HomePage = (props: any) => {
-  const { season, setSeason, currentUser, setCurrentUser, destinations, setDestinations, bookings, setBookings, tickets, setTickets, navigate, location, pathParts, activeTab, showSeasonDropdown, setShowSeasonDropdown, showBlogLightbox, setShowBlogLightbox, getSeasonIcon, selectedDest, selectedProduct, setSelectedDest, setSelectedProduct, activeDetailSection, setActiveDetailSection, expandedDay, setExpandedDay, showProductLightbox, setShowProductLightbox, showMobilePriceBox, setShowMobilePriceBox, bookingDest, setBookingDest, showAuthModal, setShowAuthModal, calcGuests, setCalcGuests, calcNights, setCalcNights, calcExtraHeli, setCalcExtraHeli, checkedPackingItems, setCheckedPackingItems, searchQuery, setSearchQuery, priceRange, setPriceRange, filterSeason, setFilterSeason, timeRemaining, setTimeRemaining, autoplayActive, setAutoplayActive, activePromoIndex, setActivePromoIndex, currentTheme, handleAddNewBooking, handleSupportTicketSubmit, handleAddUserReply, handleAdminReplyTicket, handleUpdateBookingStep, handleTweakInventorySurge, handleUserLogin, handleLogout, handlePostReview, filteredDestinations } = props;
+  const { season, setSeason, currentUser, setCurrentUser, destinations, setDestinations, bookings, setBookings, tickets, setTickets, navigate, location, pathParts, activeTab, showSeasonDropdown, setShowSeasonDropdown, showBlogLightbox, setShowBlogLightbox, getSeasonIcon, selectedDest, selectedProduct, setSelectedDest, setSelectedProduct, activeDetailSection, setActiveDetailSection, expandedDay, setExpandedDay, showProductLightbox, setShowProductLightbox, showMobilePriceBox, setShowMobilePriceBox, bookingDest, setBookingDest, showAuthModal, setShowAuthModal, calcGuests, setCalcGuests, calcNights, setCalcNights, calcExtraHeli, setCalcExtraHeli, checkedPackingItems, setCheckedPackingItems, searchQuery, setSearchQuery, priceRange, setPriceRange, filterSeason, setFilterSeason, timeRemaining, setTimeRemaining, autoplayActive, setAutoplayActive, activePromoIndex, setActivePromoIndex, currentTheme, handleAddNewBooking, handleSupportTicketSubmit, handleAddUserReply, handleAdminReplyTicket, handleUpdateBookingStep, handleTweakInventorySurge, handleUserLogin, handleLogout, handlePostReview, filteredDestinations, promotions, seasonalThemes } = props;
 
 
   return (
     <>
 {/* VIEW 1: HOME LANDING PAGE */}
         {activeTab === 'home' && !selectedDest && (() => {
-          const activePromo = PROMOTIONS[activePromoIndex] || PROMOTIONS[0];
-          const promoDest = destinations.find(d => d.id === activePromo.destinationId);
-          const seasonalMatches = destinations.filter(d => d.seasonRecommendation === season);
+          const activePromo = promotions[activePromoIndex] || promotions[0];
+          const promoDest = destinations.find((d: any) => d.id === activePromo?.destinationId);
+          const seasonalMatches = destinations.filter((d: any) => d.seasonRecommendation === season);
           const sortedDests = [...destinations].sort((a, b) => b.rating - a.rating);
 
           return (
@@ -28,11 +30,11 @@ export const HomePage = (props: any) => {
               
               {/* --- ADVANCED PROMOTIONAL HERO WITH THEMES (STACK MODE) --- */}
               <div className="relative w-full h-[645px] sm:h-[605px] md:h-[585px] lg:h-[565px] pb-12">
-                {PROMOTIONS.map((promoItem, idx) => {
-                  const promoTheme = SEASONAL_THEMES_DATA.find(t => t.id === promoItem.season) || SEASONAL_THEMES_DATA[0];
-                  const promoDest = destinations.find(d => d.id === promoItem.destinationId);
+                {promotions.map((promoItem: any, idx: number) => {
+                  const promoTheme = seasonalThemes.find((t: any) => t.id === promoItem.season) || seasonalThemes[0];
+                  const promoDest = destinations.find((d: any) => d.id === promoItem.destinationId);
                   const currentIndex = activePromoIndex;
-                  const relativeIndex = (idx - currentIndex + PROMOTIONS.length) % PROMOTIONS.length;
+                  const relativeIndex = (idx - currentIndex + promotions.length) % promotions.length;
                   const isTop = relativeIndex === 0;
 
                   const getStackStyles = (relIndex: number) => {
@@ -175,8 +177,8 @@ export const HomePage = (props: any) => {
                 subtitle="Select system theme"
                 description="Tap to instantly transform the app visual vibe."
                 themeColor={currentTheme.accent}
-                items={SEASONAL_THEMES_DATA}
-                renderItem={(themeItem) => {
+                items={seasonalThemes}
+                renderItem={(themeItem: any) => {
                   const isActive = season === themeItem.id;
                   return (
                     <div
@@ -235,11 +237,7 @@ export const HomePage = (props: any) => {
                 themeColor="text-amber-400"
                 items={sortedDests}
                 renderItem={(dest, index) => (
-                  <ProductCard
-                    dest={dest}
-                    onClick={() => setSelectedDest(dest)}
-                    rank={index + 1}
-                  />
+                  <DestinationCard dest={dest} onClick={() => { setSelectedDest(dest); navigate('/destinations'); }} rank={index + 1} />
                 )}
               />
 

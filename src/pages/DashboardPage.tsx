@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Compass, MapPin, Calendar, Users, Sliders, DollarSign, Phone, HelpCircle, Clock, Sparkles, Award, ChevronRight, ShieldCheck, Star, User, LogOut, Map, ClipboardList, Flame, ArrowRight, Heart, Send, MessageCircle, LayoutDashboard, Play, Pause, Sun, CloudRain, Snowflake, ChevronUp, CheckCircle, XCircle, Tag, Thermometer, Droplets, Wind, Shield, CheckCircle2, ChevronDown, HeartPulse, ShieldAlert, PlayCircle, Navigation, Search, Activity, Info } from 'lucide-react';
-import { SEASONAL_THEMES_DATA, PROMOTIONS, DESTINATIONS, LIVE_OPERATIONS_STEPS } from '../data';
+
 import { AuthContainer } from '../components/AuthContainer';
 import { ProductCard } from '../components/ProductCard';
 import { SplitCarousel } from '../components/SplitCarousel';
@@ -11,7 +11,7 @@ import { SupportTicketSystem } from '../components/SupportTicketSystem';
 import { InternalAdminDashboard } from '../components/InternalAdminDashboard';
 
 export const DashboardPage = (props: any) => {
-  const { season, setSeason, currentUser, setCurrentUser, destinations, setDestinations, bookings, setBookings, tickets, setTickets, navigate, location, pathParts, activeTab, showSeasonDropdown, setShowSeasonDropdown, showBlogLightbox, setShowBlogLightbox, getSeasonIcon, selectedDest, selectedProduct, setSelectedDest, setSelectedProduct, activeDetailSection, setActiveDetailSection, expandedDay, setExpandedDay, showProductLightbox, setShowProductLightbox, showMobilePriceBox, setShowMobilePriceBox, bookingDest, setBookingDest, showAuthModal, setShowAuthModal, calcGuests, setCalcGuests, calcNights, setCalcNights, calcExtraHeli, setCalcExtraHeli, checkedPackingItems, setCheckedPackingItems, searchQuery, setSearchQuery, priceRange, setPriceRange, filterSeason, setFilterSeason, timeRemaining, setTimeRemaining, autoplayActive, setAutoplayActive, activePromoIndex, setActivePromoIndex, currentTheme, handleAddNewBooking, handleSupportTicketSubmit, handleAddUserReply, handleAdminReplyTicket, handleUpdateBookingStep, handleTweakInventorySurge, handleUserLogin, handleLogout, handlePostReview, filteredDestinations } = props;
+  const { season, setSeason, currentUser, setCurrentUser, destinations, setDestinations, bookings, setBookings, tickets, setTickets, navigate, location, pathParts, activeTab, showSeasonDropdown, setShowSeasonDropdown, showBlogLightbox, setShowBlogLightbox, getSeasonIcon, selectedDest, selectedProduct, setSelectedDest, setSelectedProduct, activeDetailSection, setActiveDetailSection, expandedDay, setExpandedDay, showProductLightbox, setShowProductLightbox, showMobilePriceBox, setShowMobilePriceBox, bookingDest, setBookingDest, showAuthModal, setShowAuthModal, calcGuests, setCalcGuests, calcNights, setCalcNights, calcExtraHeli, setCalcExtraHeli, checkedPackingItems, setCheckedPackingItems, searchQuery, setSearchQuery, priceRange, setPriceRange, filterSeason, setFilterSeason, timeRemaining, setTimeRemaining, autoplayActive, setAutoplayActive, activePromoIndex, setActivePromoIndex, currentTheme, handleAddNewBooking, handleSupportTicketSubmit, handleAddUserReply, handleAdminReplyTicket, handleUpdateBookingStep, handleTweakInventorySurge, handleUserLogin, handleLogout, handlePostReview, filteredDestinations, liveOperationsSteps } = props;
   return (
     <>
 {/* VIEW 5: ACCOUNT PROFILE DASHBOARD (My Escapes / Upcoming / Live / Past) */}
@@ -158,7 +158,7 @@ export const DashboardPage = (props: any) => {
                         {/* Interactive live dialogue context indicator */}
                         <div className="bg-neutral-900/60 p-3.5 border border-white/5 rounded-xl text-center mt-3 scale-98">
                           <span className="text-[9px] uppercase text-zinc-500 block">CURRENT DISPATCH STATUS:</span>
-                          <p className="text-xs text-amber-300 font-semibold mt-1">“{LIVE_OPERATIONS_STEPS[liveTrip.currentStepIndex]}”</p>
+                          <p className="text-xs text-amber-300 font-semibold mt-1">“{liveOperationsSteps[liveTrip.currentStepIndex]}”</p>
                         </div>
                       </div>
 
